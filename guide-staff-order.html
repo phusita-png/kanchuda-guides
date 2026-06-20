@@ -206,16 +206,42 @@ SET-K02
   <!-- บอทตอบกลับ -->
   <div class="card">
     <div class="sec-title"><span class="n">4</span> ระบบตอบกลับว่าอะไร</div>
-    <div class="sec-sub">ดูข้อความที่บอทตอบ เพื่อรู้ว่าออเดอร์เข้าครบไหม</div>
+    <div class="sec-sub">หลังส่งออเดอร์ บอทจะตอบกลับเป็น <b>การ์ดสรุป + ปุ่มยกเลิก</b></div>
 
-    <div class="note tip"><span class="ic">✅</span><div><b>"บันทึกออเดอร์ #… เรียบร้อย"</b><br>= เข้าระบบครบสมบูรณ์ ไม่ต้องทำอะไรเพิ่ม</div></div>
-    <div class="note warn"><span class="ic">⚠️</span><div><b>"บันทึกแล้ว แต่ข้อมูลอาจไม่ครบ รบกวนเช็คในชีตนะคะ"</b><br>= เข้าระบบแล้ว แต่มีบางช่องขาด (เช่น ลืมเบอร์/ที่อยู่/ยอดเงิน) — แจ้งแอดมินตรวจ หรือพิมพ์ส่งใหม่ให้ครบ</div></div>
-    <div class="note warn" style="background:#fdecec;border-color:#f3c7c7;color:#7a2020"><span class="ic">🔕</span><div><b>บอทเงียบ ไม่ตอบเลย</b><br>= ระบบไม่มองว่าเป็นออเดอร์ (เช่น บรรทัดน้อยเกิน หรือไม่มีบรรทัด "โทร") — ตรวจรูปแบบแล้วส่งใหม่</div></div>
+    <div class="chat">
+      <div class="who" style="margin-top:0">🤖 ระบบ</div>
+      <div class="bubble" style="border-radius:4px 16px 16px 16px">✅ บันทึกออเดอร์ #5
+👤 สมหญิง ใจดี
+📦 SET-Q5+R
+💰 เก็บปลายทาง 999 บาท
+─────────────
+[ ❌ ยกเลิกออเดอร์นี้ ]</div>
+    </div>
+
+    <div class="note tip"><span class="ic">✅</span><div><b>การ์ดขึ้นต้นด้วย ✅</b> = เข้าระบบครบสมบูรณ์ — เช็คชื่อ/สินค้า/ยอดในการ์ดให้ตรงด้วยนะคะ</div></div>
+    <div class="note warn"><span class="ic">⚠️</span><div><b>การ์ดขึ้นต้นด้วย ⚠️</b> = เข้าระบบแล้ว แต่ข้อมูลอาจไม่ครบ (ลืมเบอร์/ที่อยู่/ยอด) — แจ้งแอดมิน หรือยกเลิกแล้วส่งใหม่ให้ครบ</div></div>
+    <div class="note warn" style="background:#fdecec;border-color:#f3c7c7;color:#7a2020"><span class="ic">🔕</span><div><b>บอทเงียบ ไม่ตอบเลย</b><br>= ระบบไม่มองว่าเป็นออเดอร์ (บรรทัดน้อยเกิน หรือไม่มีบรรทัด "โทร") — ตรวจรูปแบบแล้วส่งใหม่</div></div>
+  </div>
+
+  <!-- ยกเลิกออเดอร์ -->
+  <div class="card">
+    <div class="sec-title"><span class="n">5</span> ยกเลิกออเดอร์ (ส่งผิด)</div>
+    <div class="sec-sub">ส่งผิดไม่ต้องตกใจ — กดยกเลิกเองได้เลย</div>
+
+    <p style="font-size:14.3px">ใต้การ์ดทุกใบมีปุ่ม <b>❌ ยกเลิกออเดอร์นี้</b> — <b>กดปุ่มนั้นได้เลย</b> บอทจะยืนยัน:</p>
+    <div class="chat">
+      <div class="who" style="margin-top:0">🤖 ระบบ</div>
+      <div class="bubble" style="border-radius:4px 16px 16px 16px">❌ ยกเลิกออเดอร์ #5 (สมหญิง ใจดี) แล้วค่ะ</div>
+    </div>
+
+    <div class="note tip"><span class="ic">👍</span><div>ปุ่มยกเลิก <b>ผูกกับออเดอร์ใบนั้นโดยตรง</b> — กดแล้วยกเลิกถูกใบเสมอ ไม่ปนกับของคนอื่น (ยกเลิกได้เฉพาะออเดอร์ที่ตัวเองส่ง)</div></div>
+    <div class="note warn"><span class="ic">🗂️</span><div><b>ถ้าออเดอร์ถูกดึงรายงานส่งขนส่งไปแล้ว จะยกเลิกเองไม่ได้</b> — บอทจะให้แจ้งแอดมินแทน (ของอาจกำลังจะส่ง)</div></div>
+    <div class="note info"><span class="ic">⌨️</span><div>เลื่อนหาการ์ดไม่เจอ? พิมพ์คำสั่ง <code class="k">ยกเลิก 5</code> (เลขออเดอร์) ก็ได้ — ถ้ามีเลขซ้ำหลายใบ บอทจะให้กดปุ่มแทนเพื่อกันยกเลิกผิดใบ</div></div>
   </div>
 
   <!-- ควร / ไม่ควร -->
   <div class="card">
-    <div class="sec-title"><span class="n">5</span> ควร / ไม่ควร</div>
+    <div class="sec-title"><span class="n">6</span> ควร / ไม่ควร</div>
     <div class="dos">
       <div class="do">
         <h4>✓ ควรทำ</h4>
@@ -232,7 +258,7 @@ SET-K02
           <li>ส่งที่อยู่ทีละบรรทัด แยกหลายข้อความ</li>
           <li>พิมพ์เบอร์ปนในบรรทัดที่อยู่</li>
           <li>เว้นบรรทัดเลขออเดอร์/ชื่อลูกค้า</li>
-          <li>แก้ออเดอร์เก่าด้วยการพิมพ์ซ้ำ (ส่งใหม่ = ออเดอร์ใหม่)</li>
+          <li>แก้ออเดอร์ผิดด้วยการพิมพ์ซ้ำ → ให้<b>กดปุ่ม ❌ ยกเลิก</b>ใบเก่า แล้วส่งใหม่</li>
         </ul>
       </div>
     </div>
