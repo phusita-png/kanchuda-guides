@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือระบบรับออเดอร์ | กานต์ชุดา</title>
+<style>
+  :root{
+    --green:#1f7a5a; --green-d:#155c43; --green-l:#e7f4ee;
+    --gold:#c9a227; --gold-l:#fbf5e2; --gold-d:#8a6d12;
+    --ink:#22332c; --muted:#6b7d74; --line:#dfe9e4;
+    --shadow:0 4px 18px rgba(31,122,90,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","IBM Plex Sans Thai","Sarabun",sans-serif;
+    background:#f3f7f5; color:var(--ink); line-height:1.7; min-height:100vh;
+    -webkit-text-size-adjust:100%; padding:0 16px 48px;
+  }
+  .wrap{max-width:680px; margin:0 auto}
+
+  header{text-align:center; padding:48px 16px 8px}
+  .logo-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:#fff; border:1px solid var(--line); box-shadow:var(--shadow);
+    padding:8px 18px; border-radius:30px; margin-bottom:20px;
+    font-weight:800; color:var(--green-d); font-size:15px;
+  }
+  .logo-badge .dot{width:10px; height:10px; border-radius:50%; background:var(--gold)}
+  header h1{font-size:27px; font-weight:800; color:var(--green-d); line-height:1.3}
+  header p{font-size:15px; color:var(--muted); margin-top:10px}
+
+  .cards{display:grid; grid-template-columns:1fr; gap:16px; margin-top:30px}
+  @media(min-width:620px){.cards{grid-template-columns:1fr 1fr}}
+
+  a.guide{
+    display:block; text-decoration:none; color:inherit;
+    background:#fff; border:1px solid var(--line); border-radius:18px;
+    padding:24px 22px; box-shadow:var(--shadow);
+    transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+    position:relative; overflow:hidden;
+  }
+  a.guide:active{transform:scale(.99)}
+  @media(hover:hover){a.guide:hover{transform:translateY(-3px); box-shadow:0 10px 26px rgba(31,122,90,.16); border-color:#bfe0d0}}
+
+  a.guide .top-strip{position:absolute; top:0; left:0; right:0; height:5px}
+  a.guide.staff .top-strip{background:linear-gradient(90deg,var(--green),#34a578)}
+  a.guide.puller .top-strip{background:linear-gradient(90deg,var(--gold),#e0bf52)}
+
+  .g-icon{font-size:38px; line-height:1; margin-bottom:14px; display:block}
+  .g-role{font-size:12.5px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; margin-bottom:5px}
+  a.guide.staff .g-role{color:var(--green)}
+  a.guide.puller .g-role{color:var(--gold-d)}
+  .g-title{font-size:19px; font-weight:800; color:var(--ink); line-height:1.3}
+  .g-desc{font-size:13.8px; color:var(--muted); margin-top:9px}
+  .g-meta{
+    display:inline-flex; align-items:center; gap:6px; margin-top:16px;
+    font-size:12.5px; color:var(--muted); background:#f4f8f6;
+    padding:4px 11px; border-radius:20px; border:1px solid var(--line);
+  }
+  .g-go{margin-top:18px; font-size:14px; font-weight:700; color:var(--green-d); display:flex; align-items:center; gap:6px}
+  a.guide.puller .g-go{color:var(--gold-d)}
+
+  .foot-note{
+    margin-top:28px; background:var(--gold-l); border:1px solid #ecdca0;
+    border-radius:14px; padding:15px 18px; font-size:13.5px; color:#6e5712;
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  footer{text-align:center; color:var(--muted); font-size:12.5px; margin-top:30px}
+  footer b{color:var(--green-d)}
+
+  @media(max-width:480px){
+    header{padding:36px 12px 4px}
+    header h1{font-size:23px}
+    a.guide{padding:22px 20px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo-badge"><span class="dot"></span> กานต์ชุดา</div>
+    <h1>คู่มือระบบรับออเดอร์<br>ผ่าน LINE</h1>
+    <p>เลือกคู่มือตามหน้าที่ของคุณ</p>
+  </header>
+
+  <div class="cards">
+
+    <a class="guide staff" href="guide-staff-order.html">
+      <div class="top-strip"></div>
+      <span class="g-icon">📱</span>
+      <div class="g-role">สำหรับพนักงานขาย</div>
+      <div class="g-title">วิธีส่งออเดอร์เข้าระบบ</div>
+      <div class="g-desc">พิมพ์ออเดอร์เข้ากลุ่มไลน์ยังไงให้ถูกต้อง — ลงทะเบียนชื่อ รูปแบบข้อความ ตัวอย่างจริง</div>
+      <div class="g-meta">📲 เปิดบนมือถือได้</div>
+      <div class="g-go">เปิดคู่มือ <span>→</span></div>
+    </a>
+
+    <a class="guide puller" href="guide-puller-wms.html">
+      <div class="top-strip"></div>
+      <span class="g-icon">📑</span>
+      <div class="g-role">สำหรับแอดมิน</div>
+      <div class="g-title">วิธีดึงรายงานออเดอร์ (WMS)</div>
+      <div class="g-desc">กดดึงออเดอร์ตามรอบ → ได้ไฟล์ Order Template ส่งขนส่ง — ตรวจราคา เวลาตัดรอบ แก้ปัญหา</div>
+      <div class="g-meta">💻 เปิดบนคอมพิวเตอร์</div>
+      <div class="g-go">เปิดคู่มือ <span>→</span></div>
+    </a>
+
+  </div>
+
+  <div class="foot-note">
+    <span style="font-size:17px">💡</span>
+    <div>ไม่แน่ใจว่าควรอ่านชุดไหน? — <b>คนพิมพ์ออเดอร์เข้ากลุ่มไลน์</b> อ่านชุดซ้าย · <b>คนดึงรายงานส่งขนส่ง</b> อ่านชุดขวา</div>
+  </div>
+
+  <footer>
+    <p><b>กานต์ชุดา</b> · ระบบรับออเดอร์ผ่าน LINE</p>
+    <p>มีปัญหาการใช้งาน ติดต่อแอดมินระบบ</p>
+  </footer>
+
+</div>
+</body>
+</html>

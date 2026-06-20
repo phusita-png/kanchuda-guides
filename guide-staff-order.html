@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือพนักงาน — ส่งออเดอร์เข้าระบบ | กานต์ชุดา</title>
+<style>
+  :root{
+    --green:#1f7a5a; --green-d:#155c43; --green-l:#e7f4ee;
+    --gold:#c9a227; --gold-l:#fbf5e2;
+    --ink:#22332c; --muted:#6b7d74; --line:#dfe9e4;
+    --warn:#b3541e; --warn-l:#fcefe4; --red:#c0392b;
+    --shadow:0 2px 10px rgba(31,122,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","IBM Plex Sans Thai","Sarabun",sans-serif;
+    background:#f3f7f5; color:var(--ink); line-height:1.7;
+    -webkit-text-size-adjust:100%; padding-bottom:44px;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:0 16px}
+  .backbar{max-width:720px; margin:0 auto; padding:10px 16px 0}
+  .backbar a{color:var(--green-d); font-size:13.5px; font-weight:600; text-decoration:none}
+
+  header{
+    background:linear-gradient(135deg,var(--green) 0%,var(--green-d) 100%);
+    color:#fff; padding:28px 20px 24px; text-align:center;
+    border-radius:20px; box-shadow:var(--shadow); margin-top:10px;
+  }
+  header .badge{
+    display:inline-block; background:rgba(255,255,255,.18); color:#fff;
+    font-size:12.5px; font-weight:600; padding:4px 14px; border-radius:20px; margin-bottom:10px;
+  }
+  header h1{font-size:22px; font-weight:800; line-height:1.35}
+  header p{font-size:13.5px; opacity:.9; margin-top:6px}
+
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:20px; margin-top:16px; box-shadow:var(--shadow);
+  }
+  .sec-title{display:flex; align-items:center; gap:10px; font-size:18px; font-weight:800; color:var(--green-d); margin-bottom:4px}
+  .sec-title .n{
+    flex:0 0 auto; width:30px; height:30px; border-radius:50%;
+    background:var(--green); color:#fff; font-size:15px; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sec-sub{color:var(--muted); font-size:14px; margin:4px 0 14px 40px}
+
+  .lines{list-style:none}
+  .lines li{display:flex; align-items:flex-start; gap:12px; padding:11px 0; border-bottom:1px dashed var(--line)}
+  .lines li:last-child{border-bottom:0}
+  .lines .tag{flex:0 0 auto; min-width:112px; font-weight:700; color:var(--green-d); font-size:13.8px}
+  .lines .desc{color:var(--ink); font-size:14.3px}
+  .lines .desc small{display:block; color:var(--muted); font-size:12.5px}
+  .opt{font-size:11px; background:var(--gold-l); color:#8a6d12; padding:1px 7px; border-radius:10px; font-weight:700; margin-left:6px}
+
+  .chat{background:linear-gradient(160deg,#a6d3b9,#8dc4a4); border-radius:16px; padding:15px; margin:14px 0 4px}
+  .bubble{
+    background:#fff; border-radius:4px 16px 16px 16px;
+    padding:13px 15px; max-width:92%; box-shadow:0 1px 3px rgba(0,0,0,.12);
+    white-space:pre-wrap; font-size:14px; line-height:1.75;
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; color:#1f2d27;
+    overflow-wrap:anywhere; word-break:break-word;
+  }
+  .bubble.me{margin-left:auto; border-radius:16px 4px 16px 16px; background:#d9f4c9}
+  .chat .who{font-size:12px; color:#2c4a3a; margin:0 0 6px 4px; font-weight:600}
+  .chat .who.me{text-align:right; margin-right:4px}
+  .reply{display:flex; align-items:center; gap:8px; margin-top:12px; font-size:13.3px; color:#1d3a2a; background:rgba(255,255,255,.55); padding:8px 12px; border-radius:12px}
+
+  .ex-label{display:inline-block; font-size:13px; font-weight:800; color:var(--green-d); background:var(--green-l); padding:3px 12px; border-radius:8px; margin:16px 0 2px}
+
+  .note{border-radius:12px; padding:12px 14px; margin-top:13px; font-size:13.8px; display:flex; gap:10px; align-items:flex-start}
+  .note .ic{flex:0 0 auto; font-size:17px; line-height:1.5}
+  .note.tip{background:var(--green-l); border:1px solid #c4e3d4}
+  .note.warn{background:var(--warn-l); border:1px solid #f1d3bb; color:#7a3b14}
+  .note.warn b{color:var(--warn)}
+  .note b{color:var(--green-d)}
+
+  .dos{display:grid; grid-template-columns:1fr; gap:10px; margin-top:8px}
+  @media(min-width:560px){.dos{grid-template-columns:1fr 1fr}}
+  .do,.dont{border-radius:12px; padding:12px 14px; font-size:13.8px}
+  .do{background:var(--green-l); border:1px solid #c4e3d4}
+  .dont{background:var(--warn-l); border:1px solid #f1d3bb}
+  .do h4,.dont h4{font-size:14px; margin-bottom:6px}
+  .do h4{color:var(--green-d)} .dont h4{color:var(--warn)}
+  .do ul,.dont ul{list-style:none; font-size:13.3px}
+  .do li,.dont li{padding:3px 0 3px 22px; position:relative; color:#3a4a43}
+  .do li:before{content:"✓"; position:absolute; left:0; color:var(--green); font-weight:800}
+  .dont li:before{content:"✕"; position:absolute; left:0; color:var(--red); font-weight:800}
+
+  code.k{background:var(--gold-l); color:#8a6d12; padding:1px 8px; border-radius:6px; font-weight:700; font-size:13px; white-space:nowrap}
+
+  footer{text-align:center; color:var(--muted); font-size:12.5px; margin-top:24px; padding:0 16px}
+  footer .logo{font-weight:800; color:var(--green-d)}
+
+  @media(max-width:480px){
+    .wrap{padding:0 12px}
+    header{padding:24px 16px 20px; border-radius:16px}
+    header h1{font-size:20px}
+    .card{padding:16px 15px; border-radius:14px}
+    .sec-title{font-size:16.5px}
+    .sec-sub{margin-left:0; margin-top:6px}
+    /* บรรทัดโครงสร้าง: ป้ายขึ้นบรรทัดบน เนื้อหาอยู่ล่าง (อ่านง่ายบนจอแคบ) */
+    .lines li{flex-direction:column; gap:3px}
+    .lines .tag{min-width:0; font-size:13px}
+  }
+  @media print{body{background:#fff} .card,header{box-shadow:none} .backbar{display:none}}
+</style>
+</head>
+<body>
+
+<div class="backbar"><a href="index.html">← กลับหน้ารวมคู่มือ</a></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="badge">📦 ระบบรับออเดอร์ผ่าน LINE</div>
+    <h1>คู่มือพนักงาน<br>วิธีส่งออเดอร์เข้าระบบ</h1>
+    <p>กานต์ชุดา — สำหรับทีมขาย / แอดมิน</p>
+  </header>
+
+  <!-- ครั้งแรก: ลงทะเบียน -->
+  <div class="card">
+    <div class="sec-title"><span class="n">1</span> ครั้งแรก: ลงทะเบียนชื่อ</div>
+    <div class="sec-sub">ทำครั้งเดียวพอ เพื่อให้ระบบรู้ว่าออเดอร์เป็นของใคร</div>
+
+    <p style="font-size:14.3px">พิมพ์คำว่า <code class="k">ลงทะเบียน</code> เว้นวรรค แล้วตามด้วย <b>ชื่อ-นามสกุลจริง</b> ของตัวเอง ส่งในกลุ่มไลน์ได้เลย</p>
+
+    <div class="chat">
+      <div class="who me">คุณ</div>
+      <div class="bubble me">ลงทะเบียน สมหญิง ใจดี</div>
+      <div class="who" style="margin-top:12px">🤖 ระบบ</div>
+      <div class="bubble">✅ ลงทะเบียนชื่อ "สมหญิง ใจดี" เรียบร้อย ขอบคุณค่ะ</div>
+    </div>
+
+    <div class="note tip"><span class="ic">💡</span><div>ถ้าจะ<b>แก้ชื่อ</b>ทีหลัง พิมพ์ <code class="k">ลงทะเบียน</code> ใหม่ทับได้เลย ระบบจะอัปเดตให้อัตโนมัติ</div></div>
+  </div>
+
+  <!-- โครงสร้างออเดอร์ -->
+  <div class="card">
+    <div class="sec-title"><span class="n">2</span> รูปแบบการพิมพ์ออเดอร์</div>
+    <div class="sec-sub">พิมพ์เป็นข้อความเดียว ส่งทีเดียวจบ — เรียงตามลำดับนี้ (1 บรรทัด = 1 อย่าง)</div>
+
+    <ul class="lines">
+      <li><span class="tag">บรรทัด 1</span><span class="desc"><b>รหัสกลุ่ม</b><small>เช่น K8 — รหัสประจำกลุ่ม/ช่องทางของคุณ</small></span></li>
+      <li><span class="tag">บรรทัด 2</span><span class="desc"><b>เลขออเดอร์</b><small>ลำดับออเดอร์ เช่น 1, 2, 3…</small></span></li>
+      <li><span class="tag">บรรทัด 3</span><span class="desc"><b>ชื่อลูกค้า</b><small>ชื่อ-นามสกุลผู้รับของ</small></span></li>
+      <li><span class="tag">บรรทัดถัดไป</span><span class="desc"><b>ที่อยู่</b> (กี่บรรทัดก็ได้)<small>บ้านเลขที่ / หมู่ / ถนน แล้วขึ้นบรรทัดใหม่ ต. อ. จ. รหัสไปรษณีย์</small></span></li>
+      <li><span class="tag">บรรทัดโทร</span><span class="desc">ขึ้นต้นด้วยคำว่า <b>โทร</b><small>เช่น โทร 0812345678 — บรรทัดนี้คือตัวแบ่งที่อยู่กับสินค้า</small></span></li>
+      <li><span class="tag">บรรทัดสินค้า</span><span class="desc"><b>รหัสสินค้า (SKU)</b><small>เช่น SET-Q5+R — มีหลายตัวก็ขึ้นบรรทัดใหม่ทีละตัว</small></span></li>
+      <li><span class="tag">บรรทัดเก็บเงิน</span><span class="desc"><b>เก็บเงินปลายทาง __ บาท</b><small>ยอด COD ของสินค้าตัวนั้น</small></span></li>
+      <li><span class="tag">บรรทัด FB <span class="opt">ไม่บังคับ</span></span><span class="desc">ขึ้นต้นด้วย <b>FB:</b><small>เช่น FB: คุณสมหญิง — ใส่เฉพาะออเดอร์ที่มาจาก Facebook</small></span></li>
+    </ul>
+
+    <div class="note warn"><span class="ic">📍</span><div><b>คำว่า "โทร" สำคัญมาก</b> — ระบบใช้บรรทัดนี้เป็นตัวแบ่งระหว่าง "ที่อยู่" กับ "สินค้า" ถ้าลืมใส่ ที่อยู่กับสินค้าอาจปนกันได้</div></div>
+  </div>
+
+  <!-- ตัวอย่างจริง -->
+  <div class="card">
+    <div class="sec-title"><span class="n">3</span> ตัวอย่างจริง</div>
+    <div class="sec-sub">ลอกตามรูปแบบนี้ได้เลย</div>
+
+    <span class="ex-label">▸ แบบที่ 1 — สินค้า 1 อย่าง</span>
+    <div class="chat">
+      <div class="who me">คุณ</div>
+      <div class="bubble me">K8
+2
+สุนีย์ ตรงต่อกิจ
+123 หมู่ 10 บ้านเมืองใหม่
+ต.เมืองเก่า
+อ.กบินทร์บุรี
+จ.ปราจีนบุรี
+25400
+โทร 0895403000
+SET-Q5+R
+เก็บเงินปลายทาง 999 บาท</div>
+      <div class="reply">✅ <span>บันทึกออเดอร์ #2 (สุนีย์ ตรงต่อกิจ) เรียบร้อย</span></div>
+    </div>
+
+    <span class="ex-label">▸ แบบที่ 2 — สินค้าหลายอย่าง</span>
+    <div class="sec-sub" style="margin:6px 0 0 0">แต่ละสินค้า = 1 บรรทัด SKU + 1 บรรทัดยอดเงิน สลับกันลงไปเรื่อย ๆ</div>
+    <div class="chat">
+      <div class="who me">คุณ</div>
+      <div class="bubble me">K8
+5
+สมหญิง ใจดี
+99/1 หมู่ 2 ถนนสุขใจ
+ต.บางพลีใหญ่
+อ.บางพลี
+จ.สมุทรปราการ
+10540
+โทร 0812345678
+SET-Q5+R
+เก็บเงินปลายทาง 999 บาท
+SET-K02
+เก็บเงินปลายทาง 1290 บาท</div>
+      <div class="reply">✅ <span>บันทึกออเดอร์ #5 (สมหญิง ใจดี) เรียบร้อย</span></div>
+    </div>
+
+    <div class="note tip"><span class="ic">🛍️</span><div>มีกี่สินค้าก็ใส่ต่อได้เรื่อย ๆ — ระบบจะแยกแต่ละ SKU ออกเป็นรายการขนส่งให้เองตอนดึงรายงาน</div></div>
+  </div>
+
+  <!-- บอทตอบกลับ -->
+  <div class="card">
+    <div class="sec-title"><span class="n">4</span> ระบบตอบกลับว่าอะไร</div>
+    <div class="sec-sub">ดูข้อความที่บอทตอบ เพื่อรู้ว่าออเดอร์เข้าครบไหม</div>
+
+    <div class="note tip"><span class="ic">✅</span><div><b>"บันทึกออเดอร์ #… เรียบร้อย"</b><br>= เข้าระบบครบสมบูรณ์ ไม่ต้องทำอะไรเพิ่ม</div></div>
+    <div class="note warn"><span class="ic">⚠️</span><div><b>"บันทึกแล้ว แต่ข้อมูลอาจไม่ครบ รบกวนเช็คในชีตนะคะ"</b><br>= เข้าระบบแล้ว แต่มีบางช่องขาด (เช่น ลืมเบอร์/ที่อยู่/ยอดเงิน) — แจ้งแอดมินตรวจ หรือพิมพ์ส่งใหม่ให้ครบ</div></div>
+    <div class="note warn" style="background:#fdecec;border-color:#f3c7c7;color:#7a2020"><span class="ic">🔕</span><div><b>บอทเงียบ ไม่ตอบเลย</b><br>= ระบบไม่มองว่าเป็นออเดอร์ (เช่น บรรทัดน้อยเกิน หรือไม่มีบรรทัด "โทร") — ตรวจรูปแบบแล้วส่งใหม่</div></div>
+  </div>
+
+  <!-- ควร / ไม่ควร -->
+  <div class="card">
+    <div class="sec-title"><span class="n">5</span> ควร / ไม่ควร</div>
+    <div class="dos">
+      <div class="do">
+        <h4>✓ ควรทำ</h4>
+        <ul>
+          <li>ส่งออเดอร์เป็นข้อความเดียว (กด Enter ขึ้นบรรทัดในข้อความเดียวกัน)</li>
+          <li>ใส่คำว่า "โทร" หน้าเบอร์เสมอ</li>
+          <li>ขึ้นต้นที่อยู่ด้วย ต. / อ. / จ. ให้ครบ</li>
+          <li>เช็คข้อความตอบกลับของบอททุกครั้ง</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>✕ ไม่ควรทำ</h4>
+        <ul>
+          <li>ส่งที่อยู่ทีละบรรทัด แยกหลายข้อความ</li>
+          <li>พิมพ์เบอร์ปนในบรรทัดที่อยู่</li>
+          <li>เว้นบรรทัดเลขออเดอร์/ชื่อลูกค้า</li>
+          <li>แก้ออเดอร์เก่าด้วยการพิมพ์ซ้ำ (ส่งใหม่ = ออเดอร์ใหม่)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note tip" style="margin-top:14px"><span class="ic">📱</span><div>อยากรู้รหัสกลุ่มของห้องไลน์นี้? พิมพ์ <code class="k">groupid</code> ส่งในกลุ่ม บอทจะตอบรหัสกลับมา (ปกติแอดมินตั้งให้แล้ว)</div></div>
+  </div>
+
+  <footer>
+    <p><span class="logo">กานต์ชุดา</span> · ระบบรับออเดอร์ผ่าน LINE</p>
+    <p>มีปัญหาการใช้งาน ติดต่อแอดมินระบบ</p>
+  </footer>
+
+</div>
+</body>
+</html>
