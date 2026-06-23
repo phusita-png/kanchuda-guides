@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือตั้งค่า & ดูแลระบบ | กานต์ชุดา</title>
+<style>
+  :root{
+    --green:#1f7a5a; --green-d:#155c43; --green-l:#e7f4ee;
+    --gold:#c9a227; --gold-l:#fbf5e2; --gold-d:#8a6d12;
+    --ink:#22332c; --muted:#6b7d74; --line:#dfe9e4;
+    --warn:#b3541e; --warn-l:#fcefe4; --red:#c0392b; --red-l:#fdecec;
+    --blue:#2d6fa3; --blue-l:#e9f2f9;
+    --shadow:0 2px 12px rgba(31,122,90,.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","IBM Plex Sans Thai","Sarabun",sans-serif;
+    background:#f3f7f5; color:var(--ink); line-height:1.7; padding-bottom:44px;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:0 16px}
+
+  .backbar{max-width:860px; margin:0 auto; padding:10px 16px 0}
+  .backbar a{color:var(--green-d); font-size:13.5px; font-weight:600; text-decoration:none}
+
+  header{
+    background:linear-gradient(135deg,var(--green) 0%,var(--green-d) 100%);
+    color:#fff; padding:28px 22px 24px; text-align:center;
+    border-radius:20px; box-shadow:var(--shadow); margin-top:10px;
+  }
+  header .badge{
+    display:inline-block; background:rgba(255,255,255,.18);
+    font-size:12.5px; font-weight:600; padding:4px 14px; border-radius:20px; margin-bottom:10px;
+  }
+  header h1{font-size:23px; font-weight:800; line-height:1.3}
+  header p{font-size:14px; opacity:.92; margin-top:7px}
+
+  /* สารบัญ */
+  .toc{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:16px 18px; margin-top:16px; box-shadow:var(--shadow);
+  }
+  .toc h2{font-size:14px; color:var(--muted); font-weight:700; margin-bottom:10px; letter-spacing:.3px}
+  .toc ol{list-style:none; counter-reset:t; display:grid; gap:7px}
+  @media(min-width:620px){.toc ol{grid-template-columns:1fr 1fr}}
+  .toc li{counter-increment:t}
+  .toc a{
+    display:flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink);
+    font-size:14px; font-weight:600; padding:7px 10px; border-radius:9px; transition:background .12s;
+  }
+  .toc a:hover{background:var(--green-l)}
+  .toc a:before{
+    content:counter(t); flex:0 0 auto; width:23px; height:23px; border-radius:7px;
+    background:var(--green-l); color:var(--green-d); font-size:12.5px; font-weight:800;
+    display:flex; align-items:center; justify-content:center; border:1px solid #c4e3d4;
+  }
+
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:20px; margin-top:16px; box-shadow:var(--shadow);
+  }
+  .card.star{border-color:#ecdca0; box-shadow:0 2px 16px rgba(201,162,39,.16)}
+  .sec-title{display:flex; align-items:center; gap:11px; font-size:18px; font-weight:800; color:var(--green-d)}
+  .sec-title .n{
+    flex:0 0 auto; width:31px; height:31px; border-radius:50%;
+    background:var(--green); color:#fff; font-size:15px; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .card.star .sec-title .n{background:var(--gold)}
+  .card.star .sec-title{color:var(--gold-d)}
+  .sec-sub{color:var(--muted); font-size:14px; margin:5px 0 15px 42px}
+
+  p.lead{font-size:14.6px}
+  .menu-path{
+    background:var(--gold-l); border:1px solid #ecdca0; border-radius:12px;
+    padding:12px 14px; font-size:14px; margin:10px 0 4px; display:flex; flex-wrap:wrap; align-items:center; gap:6px;
+  }
+  .menu-path .step{font-weight:700; color:var(--gold-d)}
+  .menu-path .arrow{color:#b9a14a; font-weight:700}
+
+  ol.steps{list-style:none; counter-reset:s; margin-top:6px}
+  ol.steps>li{counter-increment:s; position:relative; padding:4px 0 16px 40px; font-size:14.6px}
+  ol.steps>li:before{
+    content:counter(s); position:absolute; left:0; top:1px;
+    width:27px; height:27px; border-radius:8px; background:var(--green-l); color:var(--green-d);
+    font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;
+    border:1px solid #c4e3d4;
+  }
+  ol.steps b{color:var(--green-d)}
+  ul.bullets{margin:8px 0 0 20px; font-size:14.2px; color:#3a4a43}
+  ul.bullets li{margin-bottom:5px}
+
+  .note{border-radius:12px; padding:12px 14px; margin-top:13px; font-size:13.8px; display:flex; gap:10px; align-items:flex-start}
+  .note .ic{flex:0 0 auto; font-size:17px}
+  .note.tip{background:var(--green-l); border:1px solid #c4e3d4}
+  .note.warn{background:var(--warn-l); border:1px solid #f1d3bb; color:#7a3b14}
+  .note.info{background:var(--blue-l); border:1px solid #c7ddee; color:#23496b}
+  .note.danger{background:var(--red-l); border:1px solid #f3c7c7; color:#7a2020}
+  .note.tip b{color:var(--green-d)}
+
+  table{width:100%; border-collapse:collapse; margin-top:12px; font-size:13.6px}
+  th,td{border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top}
+  th{background:var(--green-l); color:var(--green-d); font-weight:700}
+  td .t{font-weight:700; color:var(--ink)}
+  td small{color:var(--muted)}
+  .col-a{font-weight:700; color:var(--green-d); white-space:nowrap}
+
+  code.k{background:var(--gold-l); color:var(--gold-d); padding:1px 8px; border-radius:6px; font-weight:700; font-size:13px; white-space:nowrap}
+  .chk{display:inline-block; width:17px; height:17px; border:2px solid var(--green); border-radius:4px; background:var(--green); color:#fff; text-align:center; line-height:14px; font-size:12px; font-weight:800; vertical-align:-3px}
+
+  .result-box{border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-top:12px}
+  .result-box .bar{background:#f4f8f6; padding:9px 14px; font-size:13px; color:var(--muted); border-bottom:1px solid var(--line)}
+  .result-box .body{
+    padding:14px 15px; font-size:13.3px; white-space:pre-wrap; line-height:1.85;
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; color:#28382f;
+    overflow-wrap:anywhere; word-break:break-word;
+  }
+
+  footer{text-align:center; color:var(--muted); font-size:12.5px; margin-top:24px}
+  footer .logo{font-weight:800; color:var(--green-d)}
+
+  /* ---------- มือถือ: ตารางกลายเป็นการ์ด ---------- */
+  @media(max-width:600px){
+    .wrap{padding:0 12px}
+    header{padding:24px 18px 20px; border-radius:16px}
+    header h1{font-size:20px}
+    .card{padding:16px 15px; border-radius:14px}
+    .sec-title{font-size:16.5px}
+    .sec-sub{margin-left:0; margin-top:8px}
+    ol.steps>li{padding-left:36px; font-size:14.2px}
+    .menu-path{font-size:13px}
+
+    table.resp{border:0; margin-top:10px}
+    table.resp thead{position:absolute; left:-9999px}
+    table.resp tr{
+      display:block; border:1px solid var(--line); border-radius:12px;
+      margin-bottom:12px; padding:6px 4px; background:#fff;
+      box-shadow:0 1px 4px rgba(31,122,90,.06);
+    }
+    table.resp td{display:block; border:0; padding:8px 14px; border-bottom:1px dashed var(--line)}
+    table.resp td:last-child{border-bottom:0}
+    table.resp td:before{
+      content:attr(data-label); display:block;
+      font-size:11px; font-weight:800; color:var(--muted);
+      letter-spacing:.4px; margin-bottom:3px; text-transform:uppercase;
+    }
+  }
+  @media print{body{background:#fff} .card,header{box-shadow:none} .backbar{display:none}}
+</style>
+</head>
+<body>
+
+<div class="backbar"><a href="index.html">← กลับหน้ารวมคู่มือ</a></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="badge">⚙️ ระบบรับออเดอร์ผ่าน LINE</div>
+    <h1>คู่มือตั้งค่า &amp; ดูแลระบบ</h1>
+    <p>กานต์ชุดา — สำหรับผู้ดูแลระบบ (Admin)</p>
+  </header>
+
+  <!-- สารบัญ -->
+  <div class="toc">
+    <h2>📋 ในคู่มือนี้</h2>
+    <ol>
+      <li><a href="#s1">ตั้งค่าครั้งแรก (สร้างชีต)</a></li>
+      <li><a href="#s2">ตั้งค่ากลุ่ม LINE</a></li>
+      <li><a href="#s3">ตั้งค่าพนักงาน</a></li>
+      <li><a href="#s4">ตั้งค่าราคาสินค้า</a></li>
+      <li><a href="#s5">⭐ แจ้งตัดรอบเข้ากลุ่ม</a></li>
+      <li><a href="#s6">งานประจำวัน (ดึงรายงาน/Dashboard)</a></li>
+      <li><a href="#s7">ดูแล &amp; แก้ปัญหา</a></li>
+    </ol>
+  </div>
+
+  <!-- ภาพรวม -->
+  <div class="card">
+    <div class="sec-title"><span class="n">i</span> ระบบนี้ทำงานยังไง</div>
+    <div class="sec-sub">ภาพรวมก่อนเริ่มดูแล</div>
+    <p class="lead">พนักงานพิมพ์ออเดอร์เข้ากลุ่มไลน์ → บอทเก็บลงชีต <b>"ออเดอร์"</b> อัตโนมัติ → แอดมินกดเมนูเพื่อ <b>ส่งออก WMS (ขนส่ง) / PEAK (บัญชี)</b> และ <b>แจ้งตัดรอบเข้ากลุ่ม</b> ได้ ทุกอย่างอยู่ในไฟล์ Google Sheet เดียว ผ่านเมนู <code class="k">📦 ระบบออเดอร์</code></p>
+    <table class="resp">
+      <thead><tr><th style="width:34%">ชีต</th><th>ใช้ทำอะไร</th></tr></thead>
+      <tbody>
+        <tr><td data-label="ชีต" class="t">ออเดอร์</td><td data-label="ใช้ทำอะไร">ชีตหลัก เก็บทุกออเดอร์ที่บอทบันทึก (ห้ามลบ/แก้มั่ว)</td></tr>
+        <tr><td data-label="ชีต" class="t">กลุ่ม</td><td data-label="ใช้ทำอะไร">จับคู่กลุ่มไลน์ + ตั้งช่องทาง/รหัส (ตั้งค่าครั้งเดียว — ดูข้อ 2)</td></tr>
+        <tr><td data-label="ชีต" class="t">พนักงาน</td><td data-label="ใช้ทำอะไร">รายชื่อพนักงาน + รหัสคน (ดูข้อ 3)</td></tr>
+        <tr><td data-label="ชีต" class="t">ราคาสินค้า</td><td data-label="ใช้ทำอะไร">พจนานุกรมรหัส SKU มาตรฐาน (ดูข้อ 4)</td></tr>
+        <tr><td data-label="ชีต" class="t">ประกาศ</td><td data-label="ใช้ทำอะไร">⭐ ตั้งรอบ/เวลา/ข้อความ แจ้งตัดรอบเข้ากลุ่ม (ดูข้อ 5)</td></tr>
+        <tr><td data-label="ชีต" class="t">Archive</td><td data-label="ใช้ทำอะไร">ออเดอร์ที่ออกรายงาน + ปิดรอบแล้ว (ระบบย้ายมาเอง)</td></tr>
+      </tbody>
+    </table>
+    <div class="note info"><span class="ic">💻</span><div>งานตั้งค่าทั้งหมดทำ <b>บนคอมพิวเตอร์</b> (เปิดไฟล์ Google Sheet) · เมนูโผล่บนแถบด้านบนชื่อ <code class="k">📦 ระบบออเดอร์</code> (รอ 2–3 วิหลังเปิดไฟล์)</div></div>
+  </div>
+
+  <!-- 1 ตั้งค่าครั้งแรก -->
+  <div class="card" id="s1">
+    <div class="sec-title"><span class="n">1</span> ตั้งค่าครั้งแรก</div>
+    <div class="sec-sub">สร้าง/อัปเดตชีตทั้งหมดให้พร้อมใช้</div>
+    <div class="menu-path">
+      <span class="step">📦 ระบบออเดอร์</span><span class="arrow">▸</span>
+      <span class="step">🗂️ สร้างชีตทั้งหมด</span>
+    </div>
+    <p class="lead" style="margin-top:12px">กดเมนูนี้ ระบบจะสร้างชีตที่จำเป็นทั้งหมด + ใส่หัวตาราง + ช่องติ๊ก/dropdown ให้อัตโนมัติ <b>กดซ้ำได้ปลอดภัย</b> (ไม่ลบข้อมูลเดิม — แค่เติมส่วนที่ขาด)</p>
+    <div class="note tip"><span class="ic">🔁</span><div><b>เมื่อไหร่ต้องกดซ้ำ?</b> — หลัง<b>เพิ่มกลุ่มใหม่</b> (ให้ dropdown กลุ่มในชีตประกาศอัปเดต) หรือเมื่อระบบมีอัปเดตเพิ่มคอลัมน์</div></div>
+    <div class="note info"><span class="ic">🔐</span><div>ครั้งแรกอาจมีหน้าต่างขอ <b>อนุญาต (Authorize)</b> — กด Allow ด้วยบัญชีเจ้าของระบบ (ทำครั้งเดียว)</div></div>
+  </div>
+
+  <!-- 2 ตั้งค่ากลุ่ม -->
+  <div class="card" id="s2">
+    <div class="sec-title"><span class="n">2</span> ตั้งค่ากลุ่ม LINE</div>
+    <div class="sec-sub">เชื่อมกลุ่มไลน์เข้าระบบ + กรอกรหัสสำหรับออกรายงาน</div>
+
+    <ol class="steps">
+      <li>เชิญ <b>บอทกานต์ชุดา</b> เข้ากลุ่มไลน์ของพนักงาน</li>
+      <li>พิมพ์คำว่า <code class="k">groupid</code> ในกลุ่ม → บอทจะบันทึกกลุ่มลงชีต <b>"กลุ่ม"</b> ให้อัตโนมัติ (1 แถว/กลุ่ม)</li>
+      <li>เปิดชีต <b>"กลุ่ม"</b> แล้วกรอกข้อมูลที่เหลือ <b>ด้วยมือ</b>:</li>
+    </ol>
+
+    <table class="resp">
+      <thead><tr><th style="width:30%">คอลัมน์</th><th>กรอกอะไร</th></tr></thead>
+      <tbody>
+        <tr><td data-label="คอลัมน์" class="col-a">ชื่อกลุ่ม</td><td data-label="กรอกอะไร">ชื่อที่อ่านง่าย เช่น <code class="k">Telesales ก.3</code> · <code class="k">FB ก.6</code> (ใช้โชว์ใน dropdown ชีตประกาศด้วย)</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">รหัสกลุ่ม</td><td data-label="กรอกอะไร">รหัสสั้น ๆ ของกลุ่ม (ออปชัน)</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">ช่องทาง</td><td data-label="กรอกอะไร"><code class="k">Telesales</code> หรือ <code class="k">FB</code> — ระบบใช้คำนวณเวลาตัดรอบ</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">orderBase</td><td data-label="กรอกอะไร">ฐานเลขออเดอร์ เช่น <code class="k">T</code> (Telesales) · <code class="k">A06</code> (FB)</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">adminBase</td><td data-label="กรอกอะไร">ฐานรหัสแอดมินขาย เช่น <code class="k">kan03n-T-</code> · <code class="k">kan03n-06</code></td></tr>
+      </tbody>
+    </table>
+    <div class="note warn"><span class="ic">⚠️</span><div>กลุ่มที่ <b>ยังไม่กรอกช่องทาง/orderBase</b> จะถูกข้ามตอนดึงรายงาน (ระบบจะแจ้งว่า "ข้ามเพราะกลุ่มยังไม่ตั้งช่องทาง") → กรอกให้ครบก่อนใช้งาน</div></div>
+  </div>
+
+  <!-- 3 ตั้งค่าพนักงาน -->
+  <div class="card" id="s3">
+    <div class="sec-title"><span class="n">3</span> ตั้งค่าพนักงาน</div>
+    <div class="sec-sub">ผูกชื่อจริง + รหัสคน (ใช้ประกอบเลขออเดอร์/รหัสแอดมินขาย)</div>
+
+    <p class="lead">มี 2 วิธีให้ชื่อพนักงานเข้าระบบ:</p>
+    <ul class="bullets">
+      <li><b>อัตโนมัติ</b> — พอพนักงานพิมพ์ออเดอร์ครั้งแรก บอทเก็บ LINE User ID + ชื่อไลน์ลงชีต "พนักงาน" ให้</li>
+      <li><b>ลงทะเบียนเอง</b> — พนักงานพิมพ์ในกลุ่ม: <code class="k">ลงทะเบียน ชื่อ-นามสกุล รหัส</code> เช่น <code class="k">ลงทะเบียน สมหญิง ใจดี 03</code></li>
+    </ul>
+    <div class="note tip" style="margin-top:13px"><span class="ic">🔑</span><div>เปิดชีต <b>"พนักงาน"</b> ตรวจ/เติม <b>รหัสคน</b> (คอลัมน์ E) ให้ครบ เช่น <code class="k">03</code> · <code class="k">Z</code> · <code class="k">M</code> — รหัสนี้<b>ผูกกับคน</b> (ไม่ใช่กลุ่ม) คน 1 คนทำได้หลายกลุ่ม</div></div>
+  </div>
+
+  <!-- 4 ราคาสินค้า -->
+  <div class="card" id="s4">
+    <div class="sec-title"><span class="n">4</span> ตั้งค่าราคาสินค้า</div>
+    <div class="sec-sub">พจนานุกรมรหัส SKU ให้ระบบจับคู่ได้แม่น</div>
+    <p class="lead">เปิดชีต <b>"ราคาสินค้า"</b> คอลัมน์ A ใส่ <b>รหัส SKU มาตรฐาน</b> ให้ครบทุกตัว เช่น <code class="k">SET-8</code> · <code class="k">SET-Q3-06</code></p>
+    <div class="note info"><span class="ic">🏷️</span><div>ระบบฉลาดพอจะจับคู่ <code class="k">Set 8</code> / <code class="k">Set8</code> / <code class="k">SET-8</code> ให้เป็นรหัสเดียวกัน — แต่ <b>ยิ่งกรอกครบ ยิ่งแปลงรหัสแม่น</b> · ราคาขายจริงระบบ <b>ยึดยอด COD</b> ที่พนักงานพิมพ์ (คอลัมน์ราคาเป็นออปชัน)</div></div>
+  </div>
+
+  <!-- 5 แจ้งตัดรอบ ★ -->
+  <div class="card star" id="s5">
+    <div class="sec-title"><span class="n">5</span> แจ้งตัดรอบเข้ากลุ่ม ⭐</div>
+    <div class="sec-sub">ให้บอทส่งการ์ดแจ้ง "ตัดรอบแล้ว" เข้ากลุ่มอัตโนมัติ — ตั้งเองได้ที่ชีต "ประกาศ"</div>
+
+    <p class="lead">ทั้งหมดคุมที่ชีต <b>"ประกาศ"</b> — <b>1 แถว = 1 รอบแจ้ง</b> จะกี่รอบ/วัน กี่กลุ่มก็ได้ แค่เพิ่มแถว <b>ไม่ต้องแตะโค้ด</b></p>
+
+    <table class="resp">
+      <thead><tr><th style="width:26%">คอลัมน์</th><th>ใส่อะไร</th></tr></thead>
+      <tbody>
+        <tr><td data-label="คอลัมน์" class="col-a">A เปิด</td><td data-label="ใส่อะไร"><span class="chk">✓</span> ช่องติ๊ก — ติ๊ก = เปิดรอบนี้ · เอาติ๊กออก = ปิด</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">B กลุ่มเป้าหมาย</td><td data-label="ใส่อะไร">เลือกจาก <b>dropdown</b> — ชื่อกลุ่มที่ลงทะเบียนแล้ว หรือ <code class="k">ทั้งหมด</code> (ทุกกลุ่ม)</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">C วันที่ส่ง</td><td data-label="ใส่อะไร"><b>dropdown</b>: <code class="k">ทุกวัน</code> / <code class="k">จันทร์-ศุกร์</code> / <code class="k">เสาร์-อาทิตย์</code> (หรือพิมพ์เอง <code class="k">จ,พ,ศ</code>)</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">D เวลา</td><td data-label="ใส่อะไร">เวลาส่ง เช่น <code class="k">13:00</code> · <code class="k">16:00</code> (เป๊ะนาที)</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">E หัวข้อ</td><td data-label="ใส่อะไร">หัวการ์ด เช่น <code class="k">ระบบตัดรอบออเดอร์แล้วค่ะ</code></td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">F ข้อความ</td><td data-label="ใส่อะไร">เนื้อในการ์ด — ใส่ตัวแปร <code class="k">{วันนี้}</code> <code class="k">{พรุ่งนี้}</code> <code class="k">{เวลา}</code> ได้</td></tr>
+        <tr><td data-label="คอลัมน์" class="col-a">G ส่งล่าสุด</td><td data-label="ใส่อะไร"><b>ระบบเขียนเอง</b> (กันส่งซ้ำใน 1 วัน) — ห้ามแก้</td></tr>
+      </tbody>
+    </table>
+
+    <p class="lead" style="margin-top:16px"><b>ตัวอย่างการตั้งค่า</b> (Telesales วันละครั้ง · FB สองรอบ):</p>
+    <table class="resp">
+      <thead><tr><th>เปิด</th><th>กลุ่ม</th><th>วัน</th><th>เวลา</th><th>ข้อความ</th></tr></thead>
+      <tbody>
+        <tr>
+          <td data-label="เปิด"><span class="chk">✓</span></td><td data-label="กลุ่ม">Telesales ก.3</td>
+          <td data-label="วัน">ทุกวัน</td><td data-label="เวลา"><code class="k">13:00</code></td>
+          <td data-label="ข้อความ">ออเดอร์หลัง {เวลา} น. = รอบ {พรุ่งนี้}</td>
+        </tr>
+        <tr>
+          <td data-label="เปิด"><span class="chk">✓</span></td><td data-label="กลุ่ม">FB ก.6</td>
+          <td data-label="วัน">ทุกวัน</td><td data-label="เวลา"><code class="k">13:00</code></td>
+          <td data-label="ข้อความ">ตัดรอบเช้าแล้วค่ะ — ออเดอร์หลัง {เวลา} น. = รอบบ่าย</td>
+        </tr>
+        <tr>
+          <td data-label="เปิด"><span class="chk">✓</span></td><td data-label="กลุ่ม">FB ก.6</td>
+          <td data-label="วัน">ทุกวัน</td><td data-label="เวลา"><code class="k">16:00</code></td>
+          <td data-label="ข้อความ">ตัดรอบบ่ายแล้วค่ะ — รอบใหม่ {พรุ่งนี้}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note tip"><span class="ic">🔁</span><div><b>หลายรอบ/วัน = เพิ่มแถว</b> — กลุ่มเดียวกันคนละเวลา ใส่ได้หลายแถว (เช่น FB 13:00 + 16:00 ด้านบน) ระบบกันส่งซ้ำแยกต่อแถว</div></div>
+    <div class="note info"><span class="ic">📅</span><div><b>ตัวแปรอัปเดตเองทุกวัน</b> — การ์ดวันที่ 23 มิ.ย. จะขึ้น <code class="k">{พรุ่งนี้}</code> = 24 มิ.ย. · พอวันถัดไปส่งใหม่ก็เป็น 25 มิ.ย. เอง (การ์ดเก่าในไลน์ไม่เปลี่ยนย้อนหลัง)</div></div>
+
+    <p class="lead" style="margin-top:16px"><b>เปิดใช้งาน / ทดสอบ</b> — ผ่านเมนู:</p>
+    <div class="menu-path">
+      <span class="step">📦 ระบบออเดอร์</span><span class="arrow">▸</span>
+      <span class="step">🔔 แจ้งตัดรอบเข้ากลุ่ม</span>
+    </div>
+    <table class="resp" style="margin-top:10px">
+      <thead><tr><th style="width:42%">เมนูย่อย</th><th>ทำอะไร</th></tr></thead>
+      <tbody>
+        <tr><td data-label="เมนูย่อย" class="t">🧪 ทดสอบส่งตอนนี้</td><td data-label="ทำอะไร">ส่งการ์ดทุกแถวที่ติ๊ก ✓ <b>ทันที</b> (ไม่สนวัน/เวลา) — เช็คว่าการ์ดเข้าถูกกลุ่ม + ข้อความถูก</td></tr>
+        <tr><td data-label="เมนูย่อย" class="t">▶️ เปิดแจ้งอัตโนมัติ</td><td data-label="ทำอะไร">ตั้งให้ระบบเช็คทุก 15 นาที แล้วส่งตามตารางในชีตประกาศ (ทำครั้งเดียว)</td></tr>
+        <tr><td data-label="เมนูย่อย" class="t">⏹️ ปิดแจ้งอัตโนมัติ</td><td data-label="ทำอะไร">หยุดการส่งอัตโนมัติทั้งหมด</td></tr>
+      </tbody>
+    </table>
+    <div class="note warn"><span class="ic">👥</span><div><b>เพิ่มกลุ่มใหม่แล้วไม่เห็นใน dropdown?</b> — ตั้งชื่อกลุ่มในชีต "กลุ่ม" ให้เรียบร้อย แล้วกด <code class="k">🗂️ สร้างชีตทั้งหมด</code> อีกครั้ง → dropdown จะอัปเดต</div></div>
+    <div class="note info"><span class="ic">⏰</span><div>ถ้าระบบส่งพลาดเวลา (เน็ตล่ม/ทริกเกอร์คลาด) จะ <b>ส่งชดเชยให้ในวันนั้น</b> รอบถัดไป — ไม่ตกหล่น</div></div>
+  </div>
+
+  <!-- 6 งานประจำวัน -->
+  <div class="card" id="s6">
+    <div class="sec-title"><span class="n">6</span> งานประจำวัน</div>
+    <div class="sec-sub">ดึงรายงาน · ปิดรอบ · บัญชี · ยอดขาย</div>
+
+    <table class="resp">
+      <thead><tr><th style="width:34%">งาน</th><th>เมนู / รายละเอียด</th></tr></thead>
+      <tbody>
+        <tr><td data-label="งาน" class="t">🚚 ดึงรายงาน WMS</td><td data-label="รายละเอียด">ออกไฟล์ Order Template ส่งขนส่ง ตามรอบ → <b>มีคู่มือแยกละเอียด</b> (ดูชุด "ดึงรายงาน WMS")</td></tr>
+        <tr><td data-label="งาน" class="t">📦 ปิดรอบ</td><td data-label="รายละเอียด">เมนู 📑 รายงาน WMS ▸ <b>ปิดรอบ</b> → ย้ายออเดอร์ที่ออกเลขแล้วเข้า Archive (มีถามยืนยันก่อน)</td></tr>
+        <tr><td data-label="งาน" class="t">🧾 ส่งออก PEAK</td><td data-label="รายละเอียด">เมนู 🧾 PEAK ▸ 1️⃣ ออกใบกำกับย่อ → 2️⃣ ดึงลง PEAK รายวัน (สำหรับบัญชี)</td></tr>
+        <tr><td data-label="งาน" class="t">📊 Dashboard ยอดขาย</td><td data-label="รายละเอียด">เมนู 📊 Dashboard ▸ รีเฟรช → ดู KPI + กราฟ (กรอกช่วงวันที่ในชีตได้)</td></tr>
+      </tbody>
+    </table>
+    <div class="note info"><span class="ic">🔗</span><div>รายละเอียดการดึงรายงาน เวลาตัดรอบ และช่องสีเหลือง อยู่ในคู่มือ <b>"ดึงรายงานออเดอร์ (WMS)"</b> — กลับไปเลือกที่หน้ารวมคู่มือ</div></div>
+  </div>
+
+  <!-- 7 ดูแล/แก้ปัญหา -->
+  <div class="card" id="s7">
+    <div class="sec-title"><span class="n">7</span> ดูแล &amp; แก้ปัญหา</div>
+    <div class="sec-sub">อาการที่พบบ่อยของผู้ดูแลระบบ</div>
+
+    <table class="resp">
+      <thead><tr><th style="width:40%">อาการ</th><th>สาเหตุ / วิธีแก้</th></tr></thead>
+      <tbody>
+        <tr><td data-label="อาการ" class="t">บอทไม่บันทึกออเดอร์ในกลุ่ม</td><td data-label="วิธีแก้">เช็คว่าบอทยังอยู่ในกลุ่ม + กลุ่มถูกบันทึกในชีต "กลุ่ม" แล้ว (พิมพ์ <code class="k">groupid</code> ซ้ำได้)</td></tr>
+        <tr><td data-label="อาการ" class="t">การ์ดแจ้งตัดรอบไม่เข้ากลุ่ม</td><td data-label="วิธีแก้">(1) ติ๊ก ✓ คอลัมน์ A แล้วยัง · (2) เลือกกลุ่มถูกตัวใน dropdown · (3) บอทยังอยู่ในกลุ่มไหม · ลอง <b>🧪 ทดสอบส่งตอนนี้</b></td></tr>
+        <tr><td data-label="อาการ" class="t">dropdown กลุ่มว่าง/ไม่มีกลุ่มใหม่</td><td data-label="วิธีแก้">ตั้ง<b>ชื่อกลุ่ม</b>ในชีต "กลุ่ม" ก่อน แล้วกด <code class="k">🗂️ สร้างชีตทั้งหมด</code> อีกครั้ง</td></tr>
+        <tr><td data-label="อาการ" class="t">ดึงรายงานแล้วขึ้น "ไม่พบออเดอร์"</td><td data-label="วิธีแก้">กลุ่มยังไม่กรอกช่องทาง/orderBase หรือออเดอร์อยู่นอกช่วงเวลารอบ (ดูคู่มือดึงรายงาน)</td></tr>
+        <tr><td data-label="อาการ" class="t">ขึ้นขออนุญาต (Authorization)</td><td data-label="วิธีแก้">ครั้งแรกที่ใช้เมนูที่แตะ Drive/Trigger → กด <b>Allow</b> ด้วยบัญชีเจ้าของระบบ</td></tr>
+      </tbody>
+    </table>
+    <div class="note danger"><span class="ic">⚠️</span><div><b>ห้ามแก้/ลบชีต "ออเดอร์" และ "Archive" ด้วยมือ</b> โดยไม่จำเป็น — เป็นข้อมูลต้นทางของรายงานทั้งหมด หากต้องแก้ ให้สำรองไฟล์ก่อน</div></div>
+  </div>
+
+  <footer>
+    <p><span class="logo">กานต์ชุดา</span> · ระบบรับออเดอร์ผ่าน LINE — คู่มือผู้ดูแลระบบ</p>
+    <p>มีปัญหาการใช้งาน ติดต่อทีมพัฒนาระบบ</p>
+  </footer>
+
+</div>
+</body>
+</html>
