@@ -151,7 +151,7 @@
       <li><span class="tag">บรรทัดถัดไป</span><span class="desc"><b>ที่อยู่</b> (กี่บรรทัดก็ได้)<small>บ้านเลขที่ / หมู่ / ถนน แล้วขึ้นบรรทัดใหม่ ต. อ. จ. รหัสไปรษณีย์</small></span></li>
       <li><span class="tag">บรรทัดโทร</span><span class="desc">ขึ้นต้นด้วยคำว่า <b>โทร</b><small>เช่น โทร 0812345678 — บรรทัดนี้คือตัวแบ่งที่อยู่กับสินค้า</small></span></li>
       <li><span class="tag">บรรทัดสินค้า</span><span class="desc"><b>รหัสสินค้า (SKU)</b><small>เช่น SET-Q5+R — มีหลายตัวก็ขึ้นบรรทัดใหม่ทีละตัว</small></span></li>
-      <li><span class="tag">บรรทัดเก็บเงิน</span><span class="desc"><b>เก็บเงินปลายทาง __ บาท</b><small>ยอด COD ของสินค้าตัวนั้น</small></span></li>
+      <li><span class="tag">บรรทัดชำระเงิน</span><span class="desc"><b>เก็บเงินปลายทาง __ บาท</b> (เก็บปลายทาง/COD)<br>หรือ <b>__ บาท โอนเงิน</b> (ลูกค้าโอน)<small>พิมพ์คำว่า "โอนเงิน" ถ้าลูกค้าโอน — ระบบจะให้แนบสลิปได้ (ดูข้อ 5)</small></span></li>
       <li><span class="tag">บรรทัด FB <span class="opt">ไม่บังคับ</span></span><span class="desc">ขึ้นต้นด้วย <b>FB:</b><small>เช่น FB: คุณสมหญิง — ใส่เฉพาะออเดอร์ที่มาจาก Facebook</small></span></li>
     </ul>
 
@@ -220,6 +220,23 @@ SET-Q5+R
     </div>
 
     <div class="note tip"><span class="ic">🎁</span><div><b>วิธีบอกว่าเป็น "ของแถม / ของในชุด"</b> — พิมพ์บรรทัดนั้นให้มีคำว่า <b>แถม / ฟรี</b> หรือขึ้นต้นด้วยเครื่องหมายถูก <b>✔ ✅</b> ระบบจะรู้ว่าไม่ใช่สินค้าที่ต้องส่งขนส่ง จึงไม่นำไปออกใบส่งของ (แต่ยังเก็บไว้ในระบบ)</div></div>
+
+    <span class="ex-label">▸ แบบที่ 4 — ลูกค้าโอนเงิน (มีสลิป)</span>
+    <div class="sec-sub" style="margin:6px 0 0 0">พิมพ์ออเดอร์เหมือนเดิม แต่บรรทัดเงินใส่คำว่า <b>โอนเงิน</b> (แทนเก็บเงินปลายทาง)</div>
+    <div class="chat">
+      <div class="who me">คุณ</div>
+      <div class="bubble me">K8
+8
+อมรรัตน์ ใจดี
+88/8 หมู่ 8 ต.บ้านระกาศ
+อ.บางบ่อ จ.สมุทรปราการ
+10560
+โทร 0966175425
+SET-K04
+799 โอนเงิน</div>
+      <div class="reply">✅ <span>บันทึกออเดอร์ #8 — การ์ดจะมีปุ่ม 📎 แนบสลิป (ดูข้อ 5)</span></div>
+    </div>
+    <div class="note tip"><span class="ic">💳</span><div>เขียน <b>โอนเงิน</b> หรือ <b>__ บาท โอนเงิน</b> ก็ได้ ระบบเข้าใจทั้งคู่ — แล้วอย่าลืม <b>แนบสลิป</b> ตามข้อ 5 นะคะ</div></div>
   </div>
 
   <!-- บอทตอบกลับ -->
@@ -242,9 +259,38 @@ SET-Q5+R
     <div class="note warn" style="background:#fdecec;border-color:#f3c7c7;color:#7a2020"><span class="ic">🔕</span><div><b>บอทเงียบ ไม่ตอบเลย</b><br>= ระบบไม่มองว่าเป็นออเดอร์ (บรรทัดน้อยเกิน หรือไม่มีบรรทัด "โทร") — ตรวจรูปแบบแล้วส่งใหม่</div></div>
   </div>
 
+  <!-- โอนเงิน + แนบสลิป -->
+  <div class="card">
+    <div class="sec-title"><span class="n">5</span> ออเดอร์โอนเงิน — แนบสลิป 💳</div>
+    <div class="sec-sub">ออเดอร์ที่ลูกค้าโอน ให้แนบรูปสลิปเข้าระบบ เก็บไว้คู่กับออเดอร์</div>
+
+    <p style="font-size:14.3px">พอส่งออเดอร์ที่มีคำว่า <b>โอนเงิน</b> การ์ดตอบกลับจะมี <b>ปุ่ม 📎 แนบสลิป</b> เพิ่มมา:</p>
+    <div class="chat">
+      <div class="who" style="margin-top:0">🤖 ระบบ</div>
+      <div class="bubble" style="border-radius:4px 16px 16px 16px">✅ บันทึกออเดอร์ #8
+👤 อมรรัตน์ ใจดี
+📦 SET-K04
+💳 โอนเงิน 799 บาท
+📎 กดปุ่มด้านล่างเพื่อแนบสลิป
+─────────────
+[ 📎 แนบสลิปโอนเงิน ]
+[ ❌ ยกเลิกออเดอร์นี้ ]</div>
+    </div>
+
+    <p style="font-size:14.3px; margin-top:12px"><b>วิธีแนบสลิป (3 ขั้น):</b></p>
+    <ol style="font-size:14.3px; padding-left:22px; line-height:1.9">
+      <li>กดปุ่ม <b>📎 แนบสลิปโอนเงิน</b> ใต้การ์ดออเดอร์ใบนั้น</li>
+      <li>บอทตอบ <i>"ส่งรูปสลิปของออเดอร์ #8 (อมรรัตน์) ได้เลยค่ะ"</i> → เช็คว่าถูกใบ</li>
+      <li><b>ส่งรูปสลิป</b>เข้ากลุ่ม → บอทตอบ <i>"✅ บันทึกสลิปออเดอร์ #8 เรียบร้อย"</i></li>
+    </ol>
+
+    <div class="note tip"><span class="ic">🎯</span><div><b>กดปุ่มก่อนส่งรูปทุกครั้ง</b> = สลิปผูกถูกใบเป๊ะ ไม่ปนกับออเดอร์อื่น/คนอื่น</div></div>
+    <div class="note warn"><span class="ic">⚠️</span><div>ถ้า<b>ไม่กดปุ่ม</b>แล้วส่งรูปเลย ขณะที่มีออเดอร์โอนค้างหลายใบ บอทจะ<b>ขอให้กดปุ่มก่อน</b> (กันแนบผิดใบ) — ส่งรูปสลิปได้เฉพาะ<b>ในกลุ่ม</b>นะคะ</div></div>
+  </div>
+
   <!-- ยกเลิกออเดอร์ -->
   <div class="card">
-    <div class="sec-title"><span class="n">5</span> ยกเลิกออเดอร์ (ส่งผิด)</div>
+    <div class="sec-title"><span class="n">6</span> ยกเลิกออเดอร์ (ส่งผิด)</div>
     <div class="sec-sub">ส่งผิดไม่ต้องตกใจ — กดยกเลิกเองได้เลย</div>
 
     <p style="font-size:14.3px">ใต้การ์ดทุกใบมีปุ่ม <b>❌ ยกเลิกออเดอร์นี้</b> — <b>กดปุ่มนั้นได้เลย</b> บอทจะยืนยัน:</p>
@@ -260,7 +306,7 @@ SET-Q5+R
 
   <!-- ควร / ไม่ควร -->
   <div class="card">
-    <div class="sec-title"><span class="n">6</span> ควร / ไม่ควร</div>
+    <div class="sec-title"><span class="n">7</span> ควร / ไม่ควร</div>
     <div class="dos">
       <div class="do">
         <h4>✓ ควรทำ</h4>
