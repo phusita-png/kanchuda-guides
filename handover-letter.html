@@ -25,17 +25,20 @@
   .toolbar .hint{display:block; color:#555; font-size:13px; margin-top:8px; line-height:1.7}
 
   .page{
-    width:210mm; min-height:297mm; margin:0 auto; background:#fff;
+    width:210mm; min-height:297mm; margin:0 auto 22px; background:#fff;
     padding:22mm 20mm 18mm; box-shadow:0 4px 24px rgba(0,0,0,.14);
   }
 
-  .letterhead{text-align:center; padding-bottom:12px; border-bottom:2.5px solid var(--brown)}
+  .letterhead{display:flex; align-items:center; gap:18px; text-align:left;
+    padding-bottom:12px; border-bottom:2.5px solid var(--brown)}
+  .letterhead .lh-logo{width:84px; height:84px; object-fit:contain; flex:0 0 auto}
+  .letterhead .lh-text{flex:1}
   .letterhead .lh-title{font-size:21px; font-weight:700; color:var(--brown-d)}
   .letterhead .lh-sub{font-size:12px; color:var(--muted); letter-spacing:1.2px; margin-top:1px}
   .letterhead .lh-addr{font-size:12px; color:var(--muted); margin-top:6px; line-height:1.55}
 
-  .meta{display:flex; justify-content:flex-end; margin-top:14px}
-  .meta .box{text-align:left; font-size:14px; line-height:2}
+  .meta{margin-top:14px; overflow:hidden}
+  .meta .box{float:right; width:fit-content; text-align:left; font-size:14px; line-height:2}
 
   .fill{display:inline-block; border-bottom:1px dotted #999; min-width:60px; text-align:center; padding:0 4px}
   .ed{outline:none}
@@ -88,9 +91,11 @@
   @media (max-width:760px){
     body{padding:10px 0; font-size:14.5px}
     .toolbar{padding:0 10px}
-    .page{width:100%; padding:18px 14px}
+    .page{width:100%; min-height:auto; padding:18px 14px; margin-bottom:14px}
+    .letterhead{gap:12px}
+    .letterhead .lh-logo{width:62px; height:62px}
+    .letterhead .lh-title{font-size:18px}
     .links{flex-direction:column; text-align:center}
-    .meta{justify-content:flex-start}
     table{font-size:12.3px}
     th,td{padding:6px 7px}
     .signs{flex-direction:column; gap:22px}
@@ -101,6 +106,7 @@
     body{background:#fff; padding:0}
     .no-print{display:none !important}
     .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:0}
+    .page + .page{page-break-before:always}
     .ed:focus{background:none}
     .sigpad{border:none; background:none}
     .sigcap{display:none}
@@ -122,11 +128,14 @@
 
   <!-- หัวจดหมาย -->
   <div class="letterhead">
-    <div class="lh-title">บริษัท ริชมอนด์ กรุ๊ป 89 จำกัด</div>
-    <div class="lh-sub">RICHMOND GROUP 89 CO., LTD.</div>
-    <div class="lh-addr">
-      สำนักงานใหญ่ เลขที่ 555/42 หมู่ที่ 2 ตำบลหนองจ๊อม อำเภอสันทราย จังหวัดเชียงใหม่ 50210<br>
-      phusita@moodata.me · โทร 080-494-9314
+    <img class="lh-logo" src="richmond-logo.png" alt="Richmond Group 89">
+    <div class="lh-text">
+      <div class="lh-title">บริษัท ริชมอนด์ กรุ๊ป 89 จำกัด</div>
+      <div class="lh-sub">RICHMOND GROUP 89 CO., LTD.</div>
+      <div class="lh-addr">
+        สำนักงานใหญ่ เลขที่ 555/42 หมู่ที่ 2 ตำบลหนองจ๊อม อำเภอสันทราย จังหวัดเชียงใหม่ 50210<br>
+        phusita@moodata.me · โทร 080-494-9314
+      </div>
     </div>
   </div>
 
@@ -176,6 +185,10 @@
     <li><b>บัญชี LINE Official Account</b> (บอทรับออเดอร์) พร้อมการเชื่อมต่อกลุ่มที่ลงทะเบียนไว้</li>
     <li>สิทธิ์การใช้งานระบบ (โปรแกรม Apps Script) สำหรับการดำเนินงานของบริษัท</li>
   </ol>
+
+</div><!-- จบหน้า 1 -->
+
+<div class="page"><!-- หน้า 2 -->
 
   <h2 class="sec">3. คู่มือการใช้งานที่ส่งมอบ</h2>
   <table>
