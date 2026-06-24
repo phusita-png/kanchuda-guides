@@ -188,6 +188,7 @@
         <tr><td data-label="ชีต" class="t">พนักงาน</td><td data-label="ใช้ทำอะไร">รายชื่อพนักงาน + รหัสคน (ดูข้อ 3)</td></tr>
         <tr><td data-label="ชีต" class="t">ราคาสินค้า</td><td data-label="ใช้ทำอะไร">พจนานุกรมรหัส SKU มาตรฐาน (ดูข้อ 4)</td></tr>
         <tr><td data-label="ชีต" class="t">ประกาศ</td><td data-label="ใช้ทำอะไร">⭐ ตั้งรอบ/เวลา/ข้อความ แจ้งตัดรอบเข้ากลุ่ม (ดูข้อ 5)</td></tr>
+        <tr><td data-label="ชีต" class="t">ตั้งค่า</td><td data-label="ใช้ทำอะไร">⚙️ แก้โฟลเดอร์รายงาน/ตอบกลับในกลุ่ม/เวลาตัดรอบ เอง (แก้คอลัมน์ B — ดูข้อ 1)</td></tr>
         <tr><td data-label="ชีต" class="t">Archive</td><td data-label="ใช้ทำอะไร">ออเดอร์ที่ออกรายงาน + ปิดรอบแล้ว (ระบบย้ายมาเอง)</td></tr>
       </tbody>
     </table>
@@ -205,6 +206,18 @@
     <p class="lead" style="margin-top:12px">กดเมนูนี้ ระบบจะสร้างชีตที่จำเป็นทั้งหมด + ใส่หัวตาราง + ช่องติ๊ก/dropdown ให้อัตโนมัติ <b>กดซ้ำได้ปลอดภัย</b> (ไม่ลบข้อมูลเดิม — แค่เติมส่วนที่ขาด)</p>
     <div class="note tip"><span class="ic">🔁</span><div><b>เมื่อไหร่ต้องกดซ้ำ?</b> — หลัง<b>เพิ่มกลุ่มใหม่</b> (ให้ dropdown กลุ่มในชีตประกาศอัปเดต) หรือเมื่อระบบมีอัปเดตเพิ่มคอลัมน์</div></div>
     <div class="note info"><span class="ic">🔐</span><div>ครั้งแรกอาจมีหน้าต่างขอ <b>อนุญาต (Authorize)</b> — กด Allow ด้วยบัญชีเจ้าของระบบ (ทำครั้งเดียว)</div></div>
+
+    <p class="lead" style="margin-top:16px"><b>⚙️ ปรับค่าระบบเองได้ที่ชีต "ตั้งค่า"</b> — แก้เฉพาะ <b>คอลัมน์ B (ค่า)</b> ไม่ต้องแตะโค้ด:</p>
+    <table class="resp">
+      <thead><tr><th style="width:46%">รายการ</th><th>ผลต่อระบบ</th></tr></thead>
+      <tbody>
+        <tr><td data-label="รายการ" class="col-a">โฟลเดอร์เก็บไฟล์รายงาน</td><td data-label="ผล">วาง Folder ID จาก URL โฟลเดอร์ Drive ที่จะเก็บไฟล์รายงาน WMS</td></tr>
+        <tr><td data-label="รายการ" class="col-a">ตอบกลับในกลุ่มเมื่อบันทึก</td><td data-label="ผล"><code class="k">ใช่</code> = บอทตอบการ์ดยืนยัน · <code class="k">ไม่</code> = เงียบ</td></tr>
+        <tr><td data-label="รายการ" class="col-a">เวลาตัดรอบหลัก (ชม.)</td><td data-label="ผล">เช่น <code class="k">13</code> = ตัดรอบ 13:00 (Telesales 24 ชม. + ขอบรอบ FB)</td></tr>
+        <tr><td data-label="รายการ" class="col-a">เวลาแบ่งเช้า–บ่าย FB (ชม.)</td><td data-label="ผล">เช่น <code class="k">16</code> = FB รอบเช้าถึง 16:00</td></tr>
+      </tbody>
+    </table>
+    <div class="note tip"><span class="ic">🛡️</span><div>ปลอดภัย — เว้นว่าง/กรอกผิด ระบบใช้ค่าเริ่มต้นให้อัตโนมัติ (ไม่พัง)</div></div>
   </div>
 
   <!-- 2 ตั้งค่ากลุ่ม -->
@@ -305,12 +318,12 @@
       <thead><tr><th style="width:42%">เมนูย่อย</th><th>ทำอะไร</th></tr></thead>
       <tbody>
         <tr><td data-label="เมนูย่อย" class="t">🧪 ทดสอบส่งตอนนี้</td><td data-label="ทำอะไร">ส่งการ์ดทุกแถวที่ติ๊ก ✓ <b>ทันที</b> (ไม่สนวัน/เวลา) — เช็คว่าการ์ดเข้าถูกกลุ่ม + ข้อความถูก</td></tr>
-        <tr><td data-label="เมนูย่อย" class="t">▶️ เปิดแจ้งอัตโนมัติ</td><td data-label="ทำอะไร">ตั้งให้ระบบเช็คทุก 15 นาที แล้วส่งตามตารางในชีตประกาศ (ทำครั้งเดียว)</td></tr>
+        <tr><td data-label="เมนูย่อย" class="t">▶️ เปิดแจ้งอัตโนมัติ</td><td data-label="ทำอะไร">ตั้งให้ระบบเช็คทุก 5 นาที แล้วส่งตามตารางในชีตประกาศ (ทำครั้งเดียว · ถ้าเคยเปิดไว้แล้วและมีอัปเดต ให้กดซ้ำ)</td></tr>
         <tr><td data-label="เมนูย่อย" class="t">⏹️ ปิดแจ้งอัตโนมัติ</td><td data-label="ทำอะไร">หยุดการส่งอัตโนมัติทั้งหมด</td></tr>
       </tbody>
     </table>
     <div class="note warn"><span class="ic">👥</span><div><b>เพิ่มกลุ่มใหม่แล้วไม่เห็นใน dropdown?</b> — ตั้งชื่อกลุ่มในชีต "กลุ่ม" ให้เรียบร้อย แล้วกด <code class="k">🗂️ สร้างชีตทั้งหมด</code> อีกครั้ง → dropdown จะอัปเดต</div></div>
-    <div class="note info"><span class="ic">⏰</span><div>ถ้าระบบส่งพลาดเวลา (เน็ตล่ม/ทริกเกอร์คลาด) จะ <b>ส่งชดเชยให้ในวันนั้น</b> รอบถัดไป — ไม่ตกหล่น</div></div>
+    <div class="note info"><span class="ic">⏰</span><div><b>ส่งครั้งเดียวตรงเวลา</b> — ระบบส่งการ์ด <b>1 ครั้ง/วัน/แถว</b> ในช่วงเวลาที่ตั้ง (ภายใน 15 นาที) เท่านั้น ไม่ส่งซ้ำและไม่ส่งช้าผิดเวลา (กันพนักงานสับสน)</div></div>
   </div>
 
   <!-- 6 งานประจำวัน -->
