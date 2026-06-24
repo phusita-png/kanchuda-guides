@@ -121,7 +121,8 @@
 
 <div class="toolbar no-print">
   <button onclick="window.print()">🖨️ พิมพ์ / บันทึกเป็น PDF</button>
-  <span class="hint">✏️ คลิกที่ช่องเส้นประเพื่อ<b>พิมพ์กรอก</b> · 🖊️ <b>วาดลายเซ็น</b>ในกรอบด้วยเมาส์/นิ้ว หรือกด "อัปรูป" ใส่รูปลายเซ็น<br>เสร็จแล้วกดปุ่มด้านบน → เลือก <b>Save as PDF</b> (ลายเซ็น + ข้อมูลจะติดไปในไฟล์)</span>
+  <button onclick="submitDoc(this)" style="background:#1f7a3a;margin-left:8px">📤 ส่งให้ผู้พัฒนา (เซ็นรับงาน)</button>
+  <span class="hint">✏️ คลิกที่ช่องเส้นประเพื่อ<b>พิมพ์กรอก</b> · 🖊️ <b>วาดลายเซ็น</b>ในกรอบด้วยเมาส์/นิ้ว หรือกด "อัปรูป" ใส่รูปลายเซ็น<br>เสร็จแล้วเลือกได้ 2 ทาง → <b>🖨️ Save as PDF</b> (เก็บไฟล์เอง) หรือ <b>📤 ส่งให้ผู้พัฒนา</b> (ส่งลายเซ็น+ข้อมูลกลับเข้าระบบทันที)</span>
 </div>
 
 <div class="page">
@@ -142,8 +143,8 @@
   <!-- เลขที่ / วันที่ -->
   <div class="meta">
     <div class="box">
-      เลขที่หนังสือ <span class="fill ed" contenteditable="true" data-ph="    "></span> /2569<br>
-      วันที่ <span class="fill ed" contenteditable="true" data-ph="    "></span> เดือน <span class="fill ed" contenteditable="true" data-ph="          "></span> พ.ศ. 2569
+      เลขที่หนังสือ <span class="fill ed" contenteditable="true" data-field="docNo" data-ph="    "></span> /2569<br>
+      วันที่ <span class="fill ed" contenteditable="true" data-field="docDay" data-ph="    "></span> เดือน <span class="fill ed" contenteditable="true" data-field="docMonth" data-ph="          "></span> พ.ศ. 2569
     </div>
   </div>
 
@@ -151,7 +152,7 @@
   <div class="rule"></div>
 
   <div class="kv"><b>เรื่อง</b>&nbsp;&nbsp;ส่งมอบระบบเก็บข้อมูลออเดอร์ผ่าน LINE (Kanchuda Order System)</div>
-  <div class="kv"><b>เรียน</b>&nbsp;&nbsp;<span class="fill ed" contenteditable="true" data-ph="ชื่อผู้รับมอบ" style="min-width:180px"></span> (ตำแหน่ง <span class="fill ed" contenteditable="true" data-ph="          " style="min-width:120px"></span>) บริษัท กานต์ชุดา (ไทยแลนด์) จำกัด</div>
+  <div class="kv"><b>เรียน</b>&nbsp;&nbsp;<span class="fill ed" contenteditable="true" data-field="recipient" data-ph="ชื่อผู้รับมอบ" style="min-width:180px"></span> (ตำแหน่ง <span class="fill ed" contenteditable="true" data-field="recipientPos" data-ph="          " style="min-width:120px"></span>) บริษัท กานต์ชุดา (ไทยแลนด์) จำกัด</div>
   <div class="kv"><b>สิ่งที่ส่งมอบด้วย</b>&nbsp;&nbsp;ระบบงานพร้อมใช้งาน + คู่มือการใช้งาน (ตามรายการแนบท้าย)</div>
 
   <p class="body">
@@ -231,9 +232,9 @@
         <button type="button" onclick="clearPad('sig1')">🗑️ ล้าง</button>
         <label class="upbtn">📷 อัปรูป<input type="file" accept="image/*" onchange="uploadSig(event,'sig1')" hidden></label>
       </div>
-      ( <span class="fill ed" contenteditable="true" style="min-width:62%">ภูษิตา นันตาโจง</span> )<br>
+      ( <span class="fill ed" contenteditable="true" data-field="senderName" style="min-width:62%">ภูษิตา นันตาโจง</span> )<br>
       บริษัท ริชมอนด์ กรุ๊ป 89 จำกัด<br>
-      วันที่ <span class="fill ed" contenteditable="true" data-ph="     "></span>/<span class="fill ed" contenteditable="true" data-ph="  "></span>/2569
+      วันที่ <span class="fill ed" contenteditable="true" data-field="senderDay" data-ph="     "></span>/<span class="fill ed" contenteditable="true" data-field="senderMonth" data-ph="  "></span>/2569
     </div>
     <div class="s">
       <div class="role">ผู้รับมอบ</div>
@@ -243,9 +244,9 @@
         <button type="button" onclick="clearPad('sig2')">🗑️ ล้าง</button>
         <label class="upbtn">📷 อัปรูป<input type="file" accept="image/*" onchange="uploadSig(event,'sig2')" hidden></label>
       </div>
-      ( <span class="fill ed" contenteditable="true" data-ph="ชื่อผู้รับมอบ" style="min-width:62%"></span> )<br>
+      ( <span class="fill ed" contenteditable="true" data-field="receiverName" data-ph="ชื่อผู้รับมอบ" style="min-width:62%"></span> )<br>
       บริษัท กานต์ชุดา (ไทยแลนด์) จำกัด<br>
-      วันที่ <span class="fill ed" contenteditable="true" data-ph="     "></span>/<span class="fill ed" contenteditable="true" data-ph="  "></span>/2569
+      วันที่ <span class="fill ed" contenteditable="true" data-field="receiverDay" data-ph="     "></span>/<span class="fill ed" contenteditable="true" data-field="receiverMonth" data-ph="  "></span>/2569
     </div>
   </div>
 
@@ -298,6 +299,59 @@
     img.src = URL.createObjectURL(f);
   }
   document.querySelectorAll('canvas.sigpad').forEach(initPad);
+
+  // ===== ส่งหนังสือที่เซ็นกลับเข้าระบบ (Apps Script Web App) =====
+  // ⚠️ วาง URL /exec ที่ได้จากการ deploy Apps Script ตรงนี้
+  var RECEIVER_URL = 'PASTE_APPS_SCRIPT_EXEC_URL_HERE';
+
+  function fval(name){
+    var el = document.querySelector('[data-field="' + name + '"]');
+    return el ? el.innerText.trim() : '';
+  }
+  // คืน dataURL ของลายเซ็น · ถ้ากรอบว่าง (ไม่ได้วาด/อัปรูป) คืน ''
+  function sigData(id){
+    var c = document.getElementById(id);
+    var ctx = c.getContext('2d');
+    var d = ctx.getImageData(0, 0, c.width, c.height).data;
+    for(var i = 3; i < d.length; i += 4){ if(d[i] !== 0) return c.toDataURL('image/png'); }
+    return '';
+  }
+  async function submitDoc(btn){
+    if(RECEIVER_URL.indexOf('http') !== 0){
+      alert('ยังไม่ได้ตั้งค่าปลายทางรับข้อมูล — กรุณาแจ้งผู้พัฒนา (ภูษิตา) ค่ะ');
+      return;
+    }
+    if(!fval('receiverName')){
+      if(!confirm('ยังไม่ได้กรอกชื่อผู้รับมอบ ต้องการส่งเลยหรือไม่?')) return;
+    }
+    var payload = {
+      docNo: fval('docNo'),
+      docDate: (fval('docDay') + ' ' + fval('docMonth')).trim(),
+      recipient: fval('recipient'),
+      recipientPos: fval('recipientPos'),
+      senderName: fval('senderName'),
+      senderDate: (fval('senderDay') + '/' + fval('senderMonth')).replace(/^\/|\/$/g, ''),
+      receiverName: fval('receiverName'),
+      receiverDate: (fval('receiverDay') + '/' + fval('receiverMonth')).replace(/^\/|\/$/g, ''),
+      sig1: sigData('sig1'),
+      sig2: sigData('sig2')
+    };
+    var old = btn.textContent;
+    btn.disabled = true; btn.textContent = '⏳ กำลังส่ง...';
+    try{
+      await fetch(RECEIVER_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      btn.textContent = '✅ ส่งเรียบร้อย';
+      alert('ส่งหนังสือที่เซ็นเรียบร้อยแล้ว ขอบคุณค่ะ 🙏\nระบบได้แจ้งผู้พัฒนาทางอีเมลแล้ว');
+    }catch(err){
+      btn.disabled = false; btn.textContent = old;
+      alert('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง หรือใช้ปุ่ม "บันทึกเป็น PDF" แทนค่ะ\n' + err);
+    }
+  }
+  window.submitDoc = submitDoc;
 </script>
 </body>
 </html>
