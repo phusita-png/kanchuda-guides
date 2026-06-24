@@ -143,8 +143,8 @@
   <!-- เลขที่ / วันที่ -->
   <div class="meta">
     <div class="box">
-      เลขที่หนังสือ <span class="fill ed" contenteditable="true" data-field="docNo" data-ph="    "></span> /2569<br>
-      วันที่ <span class="fill ed" contenteditable="true" data-field="docDay" data-ph="    "></span> เดือน <span class="fill ed" contenteditable="true" data-field="docMonth" data-ph="          "></span> พ.ศ. 2569
+      เลขที่หนังสือ <span class="fill ed" contenteditable="true" data-field="docNo" data-ph="    ">AI001</span> /2569<br>
+      วันที่ <span class="fill ed" contenteditable="true" data-field="docDay" data-ph="    ">25</span> เดือน <span class="fill ed" contenteditable="true" data-field="docMonth" data-ph="          ">มิถุนายน</span> พ.ศ. 2569
     </div>
   </div>
 
@@ -234,7 +234,7 @@
       </div>
       ( <span class="fill ed" contenteditable="true" data-field="senderName" style="min-width:62%">ภูษิตา นันตาโจง</span> )<br>
       บริษัท ริชมอนด์ กรุ๊ป 89 จำกัด<br>
-      วันที่ <span class="fill ed" contenteditable="true" data-field="senderDay" data-ph="     "></span>/<span class="fill ed" contenteditable="true" data-field="senderMonth" data-ph="  "></span>/2569
+      วันที่ <span class="fill ed" contenteditable="true" data-field="senderDay" data-ph="     ">25</span> <span class="fill ed" contenteditable="true" data-field="senderMonth" data-ph="  ">มิถุนายน</span> 2569
     </div>
     <div class="s">
       <div class="role">ผู้รับมอบ</div>
@@ -299,6 +299,22 @@
     img.src = URL.createObjectURL(f);
   }
   document.querySelectorAll('canvas.sigpad').forEach(initPad);
+
+  // ===== ฝังลายเซ็นผู้ส่งมอบ (ถาวร) ลงกรอบ sig1 ตอนเปิดหน้า =====
+  // ลูกค้าเปิดมาจะเห็นลายเซ็นผู้ส่งมอบอยู่แล้ว เหลือเซ็นฝั่งผู้รับมอบ
+  (function loadSenderSig(){
+    var c = document.getElementById('sig1'); if(!c) return;
+    var ctx = c.getContext('2d');
+    var img = new Image();
+    img.onload = function(){
+      var r = Math.min(c.width / img.width, c.height / img.height);
+      var w = img.width * r, h = img.height * r;
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.drawImage(img, (c.width - w) / 2, (c.height - h) / 2, w, h);
+    };
+    img.onerror = function(){ /* ยังไม่มีไฟล์ลายเซ็น — ปล่อยกรอบว่าง */ };
+    img.src = 'signature-sender.png?v=1';
+  })();
 
   // ===== ส่งหนังสือที่เซ็นกลับเข้าระบบ (Apps Script Web App) =====
   // ⚠️ วาง URL /exec ที่ได้จากการ deploy Apps Script ตรงนี้
