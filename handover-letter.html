@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>หนังสือส่งมอบงาน — ระบบเก็บข้อมูลออเดอร์ผ่าน LINE | กานต์ชุดา</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brown:#5A3A23; --brown-d:#3f2817; --cream:#F3E5D3; --cream-l:#faf3ea;
+    --ink:#2b2b2b; --muted:#6b6b6b; --line:#d9cbbb;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    font-family:'Sarabun',-apple-system,'IBM Plex Sans Thai',sans-serif;
+    color:var(--ink); background:#e9e9ec; line-height:1.65; font-size:15px; padding:24px 0;
+  }
+  .toolbar{max-width:210mm; margin:0 auto 16px; text-align:center}
+  .toolbar button{
+    font-family:inherit; font-size:15px; font-weight:600; cursor:pointer;
+    background:var(--brown); color:#fff; border:0; border-radius:10px; padding:11px 26px;
+    box-shadow:0 2px 10px rgba(90,58,35,.25);
+  }
+  .toolbar .hint{display:block; color:#555; font-size:13px; margin-top:8px; line-height:1.7}
+
+  .page{
+    width:210mm; min-height:297mm; margin:0 auto; background:#fff;
+    padding:22mm 20mm 18mm; box-shadow:0 4px 24px rgba(0,0,0,.14);
+  }
+
+  .letterhead{display:flex; align-items:center; gap:16px; padding-bottom:14px; border-bottom:2.5px solid var(--brown)}
+  .letterhead img{width:64px; height:64px; object-fit:contain; flex:0 0 auto}
+  .letterhead .lh-text{flex:1}
+  .letterhead .lh-title{font-size:18px; font-weight:700; color:var(--brown-d)}
+  .letterhead .lh-sub{font-size:13px; color:var(--muted)}
+  .letterhead .lh-issuer{text-align:right; font-size:12.5px; color:var(--muted); line-height:1.5}
+  .letterhead .lh-issuer b{color:var(--brown-d); font-size:13.5px}
+
+  .meta{display:flex; justify-content:flex-end; margin-top:14px}
+  .meta .box{text-align:left; font-size:14px; line-height:2}
+
+  .fill{display:inline-block; border-bottom:1px dotted #999; min-width:60px; text-align:center; padding:0 4px}
+  .ed{outline:none}
+  .ed:empty:before{content:attr(data-ph); color:#bbb}
+  .ed:focus{background:#fff7df}
+
+  h1.doc-title{text-align:center; font-size:22px; font-weight:700; color:var(--brown-d); margin:18px 0 6px; letter-spacing:.5px}
+  .rule{width:90px; height:3px; background:var(--cream); border-radius:3px; margin:0 auto 18px}
+
+  .kv{margin:4px 0; font-size:15px}
+  .kv b{color:var(--brown-d)}
+  p.body{margin:14px 0; text-indent:2.2em; text-align:justify}
+
+  h2.sec{font-size:16px; font-weight:700; color:var(--brown-d); margin:18px 0 8px;
+    padding-bottom:5px; border-bottom:1px solid var(--line)}
+
+  table{width:100%; border-collapse:collapse; margin:8px 0 4px; font-size:13.7px}
+  th,td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top}
+  th{background:var(--cream); color:var(--brown-d); font-weight:600}
+  td.c{text-align:center; white-space:nowrap; font-weight:600; color:var(--brown-d)}
+
+  ol.list{margin:6px 0 6px 22px; font-size:14.5px}
+  ol.list li{margin-bottom:4px}
+
+  .links{background:var(--cream-l); border:1px solid var(--line); border-radius:8px; padding:10px 14px; font-size:14px; margin-top:8px}
+  .links a{color:var(--brown-d); font-weight:600}
+
+  .signs{display:flex; gap:30px; margin-top:30px; page-break-inside:avoid}
+  .signs .s{flex:1; text-align:center; font-size:14px; line-height:2.1}
+  .signs .s .role{font-weight:600; color:var(--brown-d); margin-bottom:4px}
+  .sigpad{
+    width:100%; max-width:300px; height:96px; border:1px dashed #c2b29c; border-radius:8px;
+    background:#fffdf8; touch-action:none; cursor:crosshair; display:block; margin:0 auto 2px;
+  }
+  .sigcap{font-size:11.5px; color:#a99; margin-bottom:4px}
+  .sigtools{margin:2px 0 6px; display:flex; gap:8px; justify-content:center}
+  .sigtools button, .sigtools .upbtn{
+    font-family:inherit; font-size:12px; cursor:pointer; border:1px solid var(--line);
+    background:#fff; color:var(--brown-d); border-radius:7px; padding:3px 12px;
+  }
+
+  footer{margin-top:24px; padding-top:10px; border-top:1px solid var(--line);
+    text-align:center; font-size:12px; color:var(--muted)}
+  footer b{color:var(--brown-d)}
+
+  /* ===== มือถือ: ให้พอดีจอ ไม่ต้องซูม ===== */
+  @media (max-width:760px){
+    body{padding:10px 0; font-size:14.5px}
+    .toolbar{padding:0 10px}
+    .page{width:100%; padding:18px 14px}
+    .letterhead{flex-wrap:wrap; gap:10px}
+    .letterhead .lh-issuer{text-align:left; width:100%}
+    .meta{justify-content:flex-start}
+    table{font-size:12.3px}
+    th,td{padding:6px 7px}
+    .signs{flex-direction:column; gap:22px}
+    .sigpad{max-width:100%}
+  }
+
+  @media print{
+    body{background:#fff; padding:0}
+    .no-print{display:none !important}
+    .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:14mm 16mm}
+    .ed:focus{background:none}
+    .sigpad{border:none; background:none}
+    .sigcap{display:none}
+    @page{size:A4; margin:0}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <button onclick="window.print()">🖨️ พิมพ์ / บันทึกเป็น PDF</button>
+  <span class="hint">✏️ คลิกที่ช่องเส้นประเพื่อ<b>พิมพ์กรอก</b> · 🖊️ <b>วาดลายเซ็น</b>ในกรอบด้วยเมาส์/นิ้ว หรือกด "อัปรูป" ใส่รูปลายเซ็น<br>เสร็จแล้วกดปุ่มด้านบน → เลือก <b>Save as PDF</b> (ลายเซ็น + ข้อมูลจะติดไปในไฟล์)</span>
+</div>
+
+<div class="page">
+
+  <!-- หัวจดหมาย -->
+  <div class="letterhead">
+    <img src="https://phusita-png.github.io/kanchuda-guides/kanchuda-order-logo.png" alt="Kanchuda Order">
+    <div class="lh-text">
+      <div class="lh-title">ระบบเก็บข้อมูลออเดอร์ผ่าน LINE</div>
+      <div class="lh-sub">Kanchuda Order System</div>
+    </div>
+    <div class="lh-issuer">
+      จัดทำและพัฒนาโดย<br>
+      <b>บริษัท ริชมอนด์ กรุ๊ป 89 จำกัด</b><br>
+      phusita@moodata.me
+    </div>
+  </div>
+
+  <!-- เลขที่ / วันที่ -->
+  <div class="meta">
+    <div class="box">
+      เลขที่หนังสือ <span class="fill ed" contenteditable="true" data-ph="    "></span> /2569<br>
+      วันที่ <span class="fill ed" contenteditable="true" data-ph="    "></span> เดือน <span class="fill ed" contenteditable="true" data-ph="          "></span> พ.ศ. 2569
+    </div>
+  </div>
+
+  <h1 class="doc-title">หนังสือส่งมอบงาน</h1>
+  <div class="rule"></div>
+
+  <div class="kv"><b>เรื่อง</b>&nbsp;&nbsp;ส่งมอบระบบเก็บข้อมูลออเดอร์ผ่าน LINE (Kanchuda Order System)</div>
+  <div class="kv"><b>เรียน</b>&nbsp;&nbsp;<span class="fill ed" contenteditable="true" data-ph="ชื่อผู้รับมอบ" style="min-width:180px"></span> (ตำแหน่ง <span class="fill ed" contenteditable="true" data-ph="          " style="min-width:120px"></span>) บริษัท กานต์ชุดา (ไทยแลนด์) จำกัด</div>
+  <div class="kv"><b>สิ่งที่ส่งมอบด้วย</b>&nbsp;&nbsp;ระบบงานพร้อมใช้งาน + คู่มือการใช้งาน (ตามรายการแนบท้าย)</div>
+
+  <p class="body">
+    ตามที่ <b>บริษัท ริชมอนด์ กรุ๊ป 89 จำกัด</b> ได้รับความไว้วางใจจาก <b>บริษัท กานต์ชุดา (ไทยแลนด์) จำกัด</b>
+    ให้ดำเนินการพัฒนา <b>ระบบเก็บข้อมูลออเดอร์ผ่าน LINE</b> เพื่อรับออเดอร์จากกลุ่ม LINE ของพนักงาน
+    บันทึกลงระบบ และส่งออกข้อมูลไปยังระบบขนส่ง (WMS) และระบบบัญชี (PEAK) โดยอัตโนมัตินั้น
+  </p>
+  <p class="body">
+    บัดนี้ ผู้พัฒนาได้ดำเนินการพัฒนาระบบและทดสอบการใช้งานเรียบร้อยแล้ว จึงขอส่งมอบระบบดังกล่าว
+    ให้แก่บริษัท กานต์ชุดา (ไทยแลนด์) จำกัด ตามรายละเอียดดังต่อไปนี้
+  </p>
+
+  <h2 class="sec">1. ขอบเขตงานที่ส่งมอบ</h2>
+  <table>
+    <tr><th style="width:34px">#</th><th style="width:38%">ความสามารถของระบบ</th><th>รายละเอียด</th></tr>
+    <tr><td class="c">1</td><td>รับออเดอร์ผ่าน LINE</td><td>บอทเก็บออเดอร์ที่พนักงานพิมพ์ในกลุ่ม LINE เข้าสู่ Google Sheet อัตโนมัติ</td></tr>
+    <tr><td class="c">2</td><td>แยกข้อมูลออเดอร์อัตโนมัติ</td><td>แกะชื่อลูกค้า ที่อยู่ เบอร์โทร สินค้า (SKU) ยอดเงิน และช่องทาง</td></tr>
+    <tr><td class="c">3</td><td>ลงทะเบียน / ยกเลิกออเดอร์</td><td>พนักงานลงทะเบียนชื่อเอง และยกเลิกออเดอร์ที่ส่งผิดได้ผ่านปุ่มในแชท</td></tr>
+    <tr><td class="c">4</td><td>รองรับการชำระเงิน 2 แบบ</td><td>เก็บเงินปลายทาง (COD) และโอนเงิน — พร้อมแนบสลิปโอนเก็บคู่กับออเดอร์</td></tr>
+    <tr><td class="c">5</td><td>ส่งออกรายงานขนส่ง (WMS)</td><td>ออกไฟล์ Order Template แยกตามกลุ่ม/พนักงาน + ตัดรอบ + ออกเลขอัตโนมัติ</td></tr>
+    <tr><td class="c">6</td><td>ส่งออกข้อมูลบัญชี (PEAK)</td><td>ออกใบกำกับภาษีอย่างย่อ + สรุปยอดขายรายวัน</td></tr>
+    <tr><td class="c">7</td><td>Dashboard ยอดขาย</td><td>สรุปยอดขาย จำนวนออเดอร์ และกราฟวิเคราะห์</td></tr>
+    <tr><td class="c">8</td><td>แจ้งตัดรอบเข้ากลุ่มอัตโนมัติ</td><td>ส่งการ์ดแจ้งตัดรอบเข้ากลุ่ม LINE ตามเวลาที่ตั้ง</td></tr>
+    <tr><td class="c">9</td><td>หน้าตั้งค่าที่ลูกค้าปรับเองได้</td><td>แก้โฟลเดอร์/เวลาตัดรอบ/การตอบกลับ ผ่านชีต "ตั้งค่า" โดยไม่ต้องแก้โค้ด</td></tr>
+  </table>
+
+  <h2 class="sec">2. สิ่งที่ส่งมอบให้เป็นกรรมสิทธิ์ / สิทธิ์การใช้งานของลูกค้า</h2>
+  <ol class="list">
+    <li><b>ไฟล์ Google Sheet</b> (ฐานข้อมูลออเดอร์ทั้งหมด) — กรรมสิทธิ์ของบริษัท กานต์ชุดา (ไทยแลนด์) จำกัด</li>
+    <li><b>โฟลเดอร์ Google Drive</b> สำหรับเก็บไฟล์รายงานและสลิปโอนเงิน</li>
+    <li><b>บัญชี LINE Official Account</b> (บอทรับออเดอร์) พร้อมการเชื่อมต่อกลุ่มที่ลงทะเบียนไว้</li>
+    <li>สิทธิ์การใช้งานระบบ (โปรแกรม Apps Script) สำหรับการดำเนินงานของบริษัท</li>
+  </ol>
+
+  <h2 class="sec">3. คู่มือการใช้งานที่ส่งมอบ</h2>
+  <table>
+    <tr><th style="width:42%">คู่มือ</th><th style="width:34%">สำหรับ</th><th>รูปแบบ</th></tr>
+    <tr><td>วิธีส่งออเดอร์เข้าระบบ</td><td>พนักงานขาย</td><td>เว็บ + ในชีต</td></tr>
+    <tr><td>วิธีดึงรายงานออเดอร์ (WMS)</td><td>แอดมิน / ฝ่ายบัญชี</td><td>เว็บ + ในชีต</td></tr>
+    <tr><td>ตั้งค่า &amp; ดูแลระบบ</td><td>ผู้ดูแลระบบ</td><td>เว็บ + ในชีต</td></tr>
+  </table>
+  <div class="links">
+    🔗 <b>ลิงก์งานที่ส่งมอบ</b><br>
+    • ระบบ Google Sheet: <a href="https://docs.google.com/spreadsheets/d/1SORf5Gf6FOwFao9NwUABRW_apdA-OtXGfJ9v1ngeWmk/edit">เปิดไฟล์ระบบ (Google Sheet)</a><br>
+    • คู่มือการใช้งาน (เว็บ): <a href="https://phusita-png.github.io/kanchuda-guides/">phusita-png.github.io/kanchuda-guides</a><br>
+    • คู่มือในตัวระบบ: ที่ชีต "คู่มือ" ในไฟล์ Google Sheet (เปิดดูได้ตลอดเวลา)
+  </div>
+
+  <h2 class="sec">4. การดูแลหลังส่งมอบ</h2>
+  <ol class="list">
+    <li>ผู้พัฒนารับประกันการทำงานของระบบเป็นระยะเวลา <b>30 (สามสิบ) วัน</b> นับจากวันส่งมอบ
+        (แก้ไขข้อผิดพลาด/บั๊กที่เกิดจากการพัฒนาโดยไม่มีค่าใช้จ่าย)</li>
+    <li>การปรับปรุง/เพิ่มความสามารถใหม่นอกเหนือขอบเขตที่ส่งมอบ พิจารณาเป็นงานเพิ่มเติม</li>
+    <li>ช่องทางติดต่อผู้ดูแลระบบ: คุณ <span class="fill ed" contenteditable="true" style="min-width:140px">ภูษิตา นันตาโจง</span>
+        โทร <span class="fill ed" contenteditable="true" style="min-width:120px">080-494-9314</span> · อีเมล phusita@moodata.me</li>
+  </ol>
+
+  <h2 class="sec">5. การตรวจรับงาน</h2>
+  <p class="body" style="text-indent:0">
+    ข้าพเจ้าผู้รับมอบได้ตรวจสอบและทดสอบการใช้งานระบบตามขอบเขตข้างต้นแล้ว เห็นว่าระบบทำงาน
+    ได้ครบถ้วนถูกต้อง จึงรับมอบไว้เป็นที่เรียบร้อย
+  </p>
+
+  <div class="signs">
+    <div class="s">
+      <div class="role">ผู้ส่งมอบ</div>
+      <canvas class="sigpad" id="sig1" width="300" height="96"></canvas>
+      <div class="sigcap no-print">— วาดลายเซ็นในกรอบ —</div>
+      <div class="sigtools no-print">
+        <button type="button" onclick="clearPad('sig1')">🗑️ ล้าง</button>
+        <label class="upbtn">📷 อัปรูป<input type="file" accept="image/*" onchange="uploadSig(event,'sig1')" hidden></label>
+      </div>
+      ( <span class="fill ed" contenteditable="true" style="min-width:62%">ภูษิตา นันตาโจง</span> )<br>
+      บริษัท ริชมอนด์ กรุ๊ป 89 จำกัด<br>
+      วันที่ <span class="fill ed" contenteditable="true" data-ph="     "></span>/<span class="fill ed" contenteditable="true" data-ph="  "></span>/2569
+    </div>
+    <div class="s">
+      <div class="role">ผู้รับมอบ</div>
+      <canvas class="sigpad" id="sig2" width="300" height="96"></canvas>
+      <div class="sigcap no-print">— วาดลายเซ็นในกรอบ —</div>
+      <div class="sigtools no-print">
+        <button type="button" onclick="clearPad('sig2')">🗑️ ล้าง</button>
+        <label class="upbtn">📷 อัปรูป<input type="file" accept="image/*" onchange="uploadSig(event,'sig2')" hidden></label>
+      </div>
+      ( <span class="fill ed" contenteditable="true" data-ph="ชื่อผู้รับมอบ" style="min-width:62%"></span> )<br>
+      บริษัท กานต์ชุดา (ไทยแลนด์) จำกัด<br>
+      วันที่ <span class="fill ed" contenteditable="true" data-ph="     "></span>/<span class="fill ed" contenteditable="true" data-ph="  "></span>/2569
+    </div>
+  </div>
+
+  <footer>
+    <b>บริษัท ริชมอนด์ กรุ๊ป 89 จำกัด</b> · ผู้พัฒนาระบบเก็บข้อมูลออเดอร์ผ่าน LINE<br>
+    phusita@moodata.me · โทร 080-494-9314
+  </footer>
+
+</div>
+
+<script>
+  // ===== แผ่นวาดลายเซ็น (เมาส์ + นิ้ว) =====
+  function initPad(canvas){
+    var ctx = canvas.getContext('2d');
+    ctx.lineWidth = 2.2; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#16284a';
+    var drawing = false, last = null;
+    function pos(e){
+      var r = canvas.getBoundingClientRect();
+      var t = (e.touches && e.touches[0]) ? e.touches[0] : e;
+      return { x:(t.clientX - r.left) * (canvas.width / r.width),
+               y:(t.clientY - r.top)  * (canvas.height / r.height) };
+    }
+    function start(e){ drawing = true; last = pos(e); e.preventDefault(); }
+    function move(e){
+      if(!drawing) return;
+      var p = pos(e);
+      ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+      last = p; e.preventDefault();
+    }
+    function end(){ drawing = false; }
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    canvas.addEventListener('touchstart', start, {passive:false});
+    canvas.addEventListener('touchmove', move, {passive:false});
+    canvas.addEventListener('touchend', end);
+  }
+  function clearPad(id){ var c = document.getElementById(id); c.getContext('2d').clearRect(0,0,c.width,c.height); }
+  function uploadSig(e, id){
+    var f = e.target.files[0]; if(!f) return;
+    var c = document.getElementById(id), ctx = c.getContext('2d');
+    var img = new Image();
+    img.onload = function(){
+      ctx.clearRect(0,0,c.width,c.height);
+      var r = Math.min(c.width/img.width, c.height/img.height);
+      var w = img.width*r, h = img.height*r;
+      ctx.drawImage(img, (c.width-w)/2, (c.height-h)/2, w, h);
+      URL.revokeObjectURL(img.src);
+    };
+    img.src = URL.createObjectURL(f);
+  }
+  document.querySelectorAll('canvas.sigpad').forEach(initPad);
+</script>
+</body>
+</html>
