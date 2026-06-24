@@ -101,11 +101,14 @@
   @media print{
     body{background:#fff; padding:0}
     .no-print{display:none !important}
-    .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:14mm 16mm}
+    .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:0}
     .ed:focus{background:none}
     .sigpad{border:none; background:none}
     .sigcap{display:none}
-    @page{size:A4; margin:0}
+    /* กันเนื้อหาถูกตัดครึ่งข้ามหน้า + ทุกหน้ามีขอบเท่ากัน */
+    table, tr, .links, .signs, ol.list li{page-break-inside:avoid}
+    h2.sec{page-break-after:avoid}
+    @page{size:A4; margin:14mm 16mm}
   }
 </style>
 </head>
