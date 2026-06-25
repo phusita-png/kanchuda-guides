@@ -105,23 +105,25 @@
   @media print{
     body{background:#fff; padding:0; font-size:13.5px}
     .no-print{display:none !important}
-    /* ปล่อยเนื้อหาไหลต่อเนื่อง — ไม่ฮาร์ดเบรกหน้าตายตัว (กันเศษล้นกลายเป็นหน้าเกิน)
-       ขอบกระดาษมาจาก @page ซ้ำทุกหน้าอัตโนมัติ → เลือก "ค่าเริ่มต้น" ในไดอะล็อกพิมพ์ */
+    /* ขอบกระดาษมาจาก @page ซ้ำทุกหน้าอัตโนมัติ → เลือก "ค่าเริ่มต้น" ในไดอะล็อกพิมพ์ */
     .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:0}
+    /* บังคับหัวข้อ 3 (กล่อง .page ที่สอง) ขึ้นหน้า 2 เสมอ → หัวข้อ 1+2 อยู่หน้า 1 ครบแน่นอน
+       ไม่ต้องลุ้นว่าข้อ 4 จะเฉียดตกหน้าหรือไม่ */
+    .page + .page{page-break-before:always}
     .ed:focus{background:none}
     .sigpad{border:none; background:none}
     .sigcap{display:none}
-    /* บีบให้กระชับลง 2 หน้า */
+    /* บีบหัวข้อ 1 ให้กระชับ เผื่อพื้นที่ให้หัวข้อ 2 อยู่หน้า 1 ครบ (มี buffer) */
     .letterhead{padding-bottom:8px}
-    .letterhead .lh-logo{width:62px; height:62px}
-    .meta{margin-top:10px}
-    .meta .box{line-height:1.6}
-    h1.doc-title{margin:10px 0 4px}
-    .rule{margin:0 auto 10px}
-    p.body{margin:6px 0}
+    .letterhead .lh-logo{width:60px; height:60px}
+    .meta{margin-top:9px}
+    .meta .box{line-height:1.55}
+    h1.doc-title{margin:9px 0 4px}
+    .rule{margin:0 auto 9px}
+    p.body{margin:5px 0}
     h2.sec{margin:9px 0 5px}
-    table{margin:5px 0 3px; font-size:13px}
-    th,td{padding:3px 9px}
+    table{margin:5px 0 3px; font-size:12.5px}
+    th,td{padding:2.5px 9px}
     ol.list{font-size:13.5px}
     .links{padding:8px 12px}
     .links .lk-logo{width:56px; height:56px}
