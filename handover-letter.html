@@ -116,8 +116,11 @@
     p.body{margin:10px 0}
     h2.sec{margin:13px 0 6px}
     table{margin:6px 0 3px}
-    .signs{margin-top:20px}
-    footer{margin-top:18px}
+    /* บังคับช่องลายเซ็นเรียงแนวนอนเสมอตอนพิมพ์ (กันโหมดมือถือทำให้เรียงแนวตั้งจนตกหน้า) */
+    .signs{margin-top:18px; flex-direction:row; gap:26px}
+    .signs .s{flex:1}
+    .sigpad{height:74px}
+    footer{margin-top:16px}
     /* กันเนื้อหาถูกตัดครึ่งข้ามหน้า + ทุกหน้ามีขอบเท่ากัน */
     table, tr, .links, .signs, ol.list li{page-break-inside:avoid}
     h2.sec{page-break-after:avoid}
