@@ -103,28 +103,36 @@
   }
 
   @media print{
-    body{background:#fff; padding:0; font-size:14px}
+    body{background:#fff; padding:0; font-size:13.5px}
     .no-print{display:none !important}
-    /* ขอบกระดาษมาจาก padding ของ .page เอง — คุมได้แน่นอน ไม่ขึ้นกับช่อง "Margins" ในหน้าต่างพิมพ์
-       (จึงตั้ง @page margin:0 แล้วใส่ขอบจริงตรงนี้ จะเลือก Default หรือ None ในไดอะล็อกก็ได้ขอบเท่ากัน) */
-    .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:16mm 20mm}
-    .page + .page{page-break-before:always}
+    /* ปล่อยเนื้อหาไหลต่อเนื่อง — ไม่ฮาร์ดเบรกหน้าตายตัว (กันเศษล้นกลายเป็นหน้าเกิน)
+       ขอบกระดาษมาจาก @page ซ้ำทุกหน้าอัตโนมัติ → เลือก "ค่าเริ่มต้น" ในไดอะล็อกพิมพ์ */
+    .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:0}
     .ed:focus{background:none}
     .sigpad{border:none; background:none}
     .sigcap{display:none}
-    /* บีบระยะห่างเล็กน้อยให้ยังพอดี 2 หน้าหลังใส่ขอบ */
-    p.body{margin:10px 0}
-    h2.sec{margin:13px 0 6px}
-    table{margin:6px 0 3px}
+    /* บีบให้กระชับลง 2 หน้า */
+    .letterhead{padding-bottom:8px}
+    .letterhead .lh-logo{width:62px; height:62px}
+    .meta .box{line-height:1.7}
+    h1.doc-title{margin:12px 0 5px}
+    .rule{margin:0 auto 12px}
+    p.body{margin:8px 0}
+    h2.sec{margin:10px 0 5px}
+    table{margin:5px 0 3px; font-size:13px}
+    th,td{padding:3.5px 9px}
+    ol.list{font-size:13.5px}
+    .links{padding:8px 12px}
+    .links .lk-logo{width:56px; height:56px}
     /* บังคับช่องลายเซ็นเรียงแนวนอนเสมอตอนพิมพ์ (กันโหมดมือถือทำให้เรียงแนวตั้งจนตกหน้า) */
-    .signs{margin-top:18px; flex-direction:row; gap:26px}
-    .signs .s{flex:1}
-    .sigpad{height:74px}
-    footer{margin-top:16px}
-    /* กันเนื้อหาถูกตัดครึ่งข้ามหน้า + ทุกหน้ามีขอบเท่ากัน */
-    table, tr, .links, .signs, ol.list li{page-break-inside:avoid}
+    .signs{margin-top:14px; flex-direction:row; gap:26px; line-height:1.8}
+    .signs .s{flex:1; line-height:1.8}
+    .sigpad{height:62px}
+    footer{margin-top:14px}
+    /* กันแถว/กล่อง/ข้อ ถูกตัดครึ่งข้ามหน้า (ตารางใหญ่ยอมให้ข้ามหน้าได้ที่ขอบแถว) */
+    tr, .links, .signs, ol.list li{page-break-inside:avoid}
     h2.sec{page-break-after:avoid}
-    @page{size:A4; margin:0}
+    @page{size:A4; margin:13mm 20mm}
   }
 </style>
 </head>
