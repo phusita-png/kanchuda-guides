@@ -103,17 +103,25 @@
   }
 
   @media print{
-    body{background:#fff; padding:0}
+    body{background:#fff; padding:0; font-size:14px}
     .no-print{display:none !important}
-    .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:0}
+    /* ขอบกระดาษมาจาก padding ของ .page เอง — คุมได้แน่นอน ไม่ขึ้นกับช่อง "Margins" ในหน้าต่างพิมพ์
+       (จึงตั้ง @page margin:0 แล้วใส่ขอบจริงตรงนี้ จะเลือก Default หรือ None ในไดอะล็อกก็ได้ขอบเท่ากัน) */
+    .page{box-shadow:none; margin:0; width:auto; min-height:auto; padding:9mm 14mm}
     .page + .page{page-break-before:always}
     .ed:focus{background:none}
     .sigpad{border:none; background:none}
     .sigcap{display:none}
+    /* บีบระยะห่างเล็กน้อยให้ยังพอดี 2 หน้าหลังใส่ขอบ */
+    p.body{margin:10px 0}
+    h2.sec{margin:13px 0 6px}
+    table{margin:6px 0 3px}
+    .signs{margin-top:20px}
+    footer{margin-top:18px}
     /* กันเนื้อหาถูกตัดครึ่งข้ามหน้า + ทุกหน้ามีขอบเท่ากัน */
     table, tr, .links, .signs, ol.list li{page-break-inside:avoid}
     h2.sec{page-break-after:avoid}
-    @page{size:A4; margin:14mm 16mm}
+    @page{size:A4; margin:0}
   }
 </style>
 </head>
