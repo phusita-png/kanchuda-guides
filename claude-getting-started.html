@@ -1,4 +1,4 @@
-<title>เริ่มใช้ Claude ช่วยงาน — ทีมกานต์ชุดา</title>
+<title>เริ่มใช้ Claude ช่วยงานบัญชี — ทีมกานต์ชุดา</title>
 
 <style>
   :root{
@@ -49,27 +49,27 @@
 
   .hero{position:relative;padding:74px 0 56px;overflow:hidden}
   .hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(680px 340px at 82% -8%,var(--brand-tint),transparent 70%),radial-gradient(520px 300px at 6% 110%,var(--gold-tint),transparent 72%);opacity:.85}
-  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
-  .hero h1{font-size:clamp(33px,5vw,56px);line-height:1.1;margin:20px 0 0;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+  .hero h1{font-size:clamp(32px,4.8vw,54px);line-height:1.1;margin:20px 0 0;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
   .hero h1 .hl{color:var(--brand);position:relative;white-space:nowrap}
   .hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.28em;background:var(--gold-tint);z-index:-1;border-radius:3px}
-  .hero .lead{font-size:clamp(17px,2vw,20px);color:var(--ink-soft);margin:22px 0 0;max-width:40ch}
+  .hero .lead{font-size:clamp(17px,2vw,20px);color:var(--ink-soft);margin:22px 0 0;max-width:42ch}
   .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
   .chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line-strong);padding:9px 15px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--ink-soft)}
   .chip b{color:var(--brand);font-weight:700}
   .chip .ico{font-size:15px}
 
-  /* chat mockup */
   .chatwin{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 60px -30px rgba(8,32,24,.5)}
   .chatwin-bar{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
   .chatwin-bar .av{width:24px;height:24px;border-radius:7px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:14px}
   .chatwin-bar b{font-size:13.5px}
   .chatwin-bar span{margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--ink-faint)}
   .chatwin-body{padding:18px;display:flex;flex-direction:column;gap:12px}
-  .bub{max-width:82%;padding:11px 15px;border-radius:15px;font-size:14.5px;line-height:1.55}
+  .bub{max-width:86%;padding:11px 15px;border-radius:15px;font-size:14px;line-height:1.55}
   .bub.me{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:5px}
   .bub.ai{align-self:flex-start;background:var(--chat-ai);color:var(--ink);border-bottom-left-radius:5px}
   .bub.ai b{color:var(--brand)}
+  .bub .num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
   .typing{align-self:flex-start;display:flex;gap:4px;padding:13px 16px;background:var(--chat-ai);border-radius:15px;border-bottom-left-radius:5px}
   .typing i{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);animation:bob 1.2s infinite}
   .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
@@ -107,17 +107,23 @@
   .step .body{min-width:0}
   .step h4{margin:6px 0 6px;font-size:16.5px;font-weight:700}
   .step p{margin:0;color:var(--ink-soft);font-size:15px}
+  .step p + p{margin-top:8px}
+  .step .mini{font-size:13.5px;color:var(--ink-faint);margin-top:8px;display:flex;gap:7px;align-items:flex-start}
+  .step .mini b{color:var(--ink-soft)}
 
-  /* prompt example card */
+  /* screenshot placeholder */
+  .shot{margin:13px 0 2px;border:2px dashed var(--line-strong);border-radius:12px;background:var(--surface-2);padding:16px 18px;display:flex;gap:13px;align-items:center;color:var(--ink-faint)}
+  .shot .si{font-size:24px;flex:0 0 auto}
+  .shot .st{font-size:13px;line-height:1.45}
+  .shot .st b{color:var(--ink-soft);display:block;font-size:13.5px;font-weight:700}
+
+  /* prompt example */
   .prompt{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
   .prompt .tag{font-family:var(--font-mono);font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold)}
   .prompt .say{display:flex;gap:11px;align-items:flex-start}
-  .prompt .say .who{flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:14px;font-weight:700}
+  .prompt .say .who{flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:700}
   .prompt .say.me .who{background:var(--brand);color:#fff}
-  .prompt .say.ai .who{background:var(--gold-tint);color:var(--gold)}
-  .prompt .say .txt{font-size:15px;line-height:1.55}
-  .prompt .say.me .txt{color:var(--ink);font-weight:600}
-  .prompt .say.ai .txt{color:var(--ink-soft)}
+  .prompt .say .txt{font-size:15px;line-height:1.55;color:var(--ink);font-weight:600}
   .copy{align-self:flex-start;font-family:var(--font-mono);font-size:11.5px;font-weight:600;background:var(--surface-2);color:var(--ink-soft);border:1px solid var(--line-strong);padding:6px 12px;border-radius:8px;cursor:pointer;transition:.18s}
   .copy:hover{color:var(--brand);border-color:var(--brand)}
   .copy.done{color:var(--brand);border-color:var(--brand)}
@@ -130,7 +136,6 @@
   .note.gold{background:var(--gold-tint);color:var(--ink);border:1px solid color-mix(in srgb,var(--gold) 28%,transparent)}
   .note code{font-family:var(--font-mono);font-size:.9em;background:color-mix(in srgb,var(--ink) 8%,transparent);padding:1px 6px;border-radius:5px}
 
-  /* compare table web vs desktop */
   .cmp{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:6px}
   .cmp .col{padding:22px 22px 24px}
   .cmp .col+.col{border-left:1px solid var(--line)}
@@ -140,6 +145,22 @@
   .cmp ul{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
   .cmp li{display:flex;gap:9px;font-size:14.5px;color:var(--ink-soft);line-height:1.5}
   .cmp li span.b{color:var(--brand);font-weight:800;flex:0 0 auto}
+
+  /* FAQ */
+  details.faq{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  details.faq+details.faq{margin-top:10px}
+  details.faq summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::after{content:"+";font-family:var(--font-mono);font-size:21px;color:var(--gold);transition:transform .2s;flex:0 0 auto}
+  details.faq[open] summary::after{transform:rotate(45deg)}
+  details.faq .fa{padding:0 20px 18px;color:var(--ink-soft);font-size:15px;line-height:1.6}
+  details.faq .fa code{font-family:var(--font-mono);font-size:.9em;background:var(--surface-2);padding:1px 6px;border-radius:5px}
+
+  /* glossary */
+  .gloss{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0;padding:0}
+  .gterm{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .gterm dt{font-weight:800;font-size:14.5px;color:var(--brand);margin-bottom:5px;font-family:var(--font-mono);word-break:break-word}
+  .gterm dd{margin:0;color:var(--ink-soft);font-size:14px;line-height:1.5}
 
   .pit{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--danger);border-radius:12px}
   .pit .pi{font-size:22px}
@@ -153,12 +174,12 @@
   footer .fmeta a{color:var(--brand);text-decoration:none;font-weight:600}
   footer .fmeta a:hover{text-decoration:underline}
   .ftag{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);letter-spacing:.04em}
-  .lead-sub{color:var(--ink-soft);font-size:16px;max-width:64ch;margin:-8px 0 26px}
+  .lead-sub{color:var(--ink-soft);font-size:16px;max-width:66ch;margin:-8px 0 24px}
 
   .rev{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
   .rev.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.rev{opacity:1;transform:none;transition:none}.typing i{animation:none}html{scroll-behavior:auto}}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
 
   @media (max-width:860px){
     .hero .wrap{grid-template-columns:1fr;gap:32px}
@@ -166,6 +187,7 @@
     .grid2,.grid3{grid-template-columns:1fr}
     .cmp{grid-template-columns:1fr}
     .cmp .col+.col{border-left:0;border-top:1px solid var(--line)}
+    .gloss{grid-template-columns:1fr}
     .stage{padding:42px 0}
     .stage-num{width:44px;height:44px;font-size:18px}
   }
@@ -187,21 +209,21 @@
 <header class="hero">
   <div class="wrap">
     <div>
-      <span class="eyebrow">เริ่มใช้ Claude ช่วยงาน · ทีมกานต์ชุดา</span>
-      <h1>ให้ Claude เป็น<br><span class="hl">ผู้ช่วยคู่ใจ</span> ทั้งบนเว็บและบนคอม</h1>
-      <p class="lead">คิดแคปชั่น ตอบแชทลูกค้า สรุปยอด แปลภาษา คิดโปรโมชั่น — พิมพ์คุยเป็นภาษาไทยธรรมดา แล้วให้ Claude ช่วยคิดช่วยร่างให้</p>
+      <span class="eyebrow">เริ่มใช้ Claude ช่วยงานบัญชี · ทีมกานต์ชุดา</span>
+      <h1>ให้ Claude เป็น<br><span class="hl">ผู้ช่วยบัญชี</span> คู่ใจของร้าน</h1>
+      <p class="lead">สรุปยอดขาย กระทบยอดเงินเข้า คำนวณ VAT ทำรายงานส่งสำนักงานบัญชี — วางข้อมูลแล้วให้ Claude ช่วยคิด ช่วยจัดตารางให้ในไม่กี่วินาที</p>
       <div class="chips">
         <span class="chip"><span class="ico">🌐</span> <b>claude.ai</b> — ใช้บนเว็บ</span>
         <span class="chip"><span class="ico">💻</span> <b>Claude Desktop</b> — แอปบนคอม</span>
-        <span class="chip"><span class="ico">✨</span> บัญชี <b>Pro</b> เดียว ใช้ได้ทั้งคู่</span>
+        <span class="chip"><span class="ico">📊</span> เน้น<b>งานบัญชี</b>ร้านค้า</span>
       </div>
     </div>
     <div class="chatwin" aria-hidden="true">
-      <div class="chatwin-bar"><span class="av">✦</span><b>Claude</b><span>ผู้ช่วยกานต์ชุดา</span></div>
+      <div class="chatwin-bar"><span class="av">✦</span><b>Claude</b><span>ผู้ช่วยบัญชีกานต์ชุดา</span></div>
       <div class="chatwin-body">
-        <div class="bub me">ช่วยคิดแคปชั่นขายเซ็ตครีม SET-8 ให้หน่อย โทนน่ารักสดใส</div>
-        <div class="bub ai"><b>ได้เลยค่ะ 3 แบบนะคะ</b><br>1. “ผิวใสได้ทุกวัน เริ่มที่ SET-8 ✨”<br>2. “ครบเซ็ตเดียว ดูแลผิวจบ 🌸”<br>3. “SET-8 ตัวช่วยผิวปังของสาว ๆ 💛”</div>
-        <div class="bub me">ขอแบบสั้นกว่านี้ ใส่ราคา 799 ด้วย</div>
+        <div class="bub me">นี่ยอดขายวันนี้ ช่วยสรุปยอดรวม แล้วแยก COD กับโอนให้หน่อย</div>
+        <div class="bub ai"><b>สรุปให้ค่ะ 📊</b><br>• ยอดรวม <span class="num">24,580</span> บาท<br>• COD <span class="num">18</span> ออเดอร์ = <span class="num">15,200</span><br>• โอน <span class="num">9</span> ออเดอร์ = <span class="num">9,380</span></div>
+        <div class="bub me">ทำเป็นตารางส่งสำนักงานบัญชี พร้อม VAT 7% ได้ไหม</div>
         <div class="typing"><i></i><i></i><i></i></div>
       </div>
     </div>
@@ -214,8 +236,10 @@
     <a href="#s2"><span class="n">02</span> ใช้บนเว็บ</a>
     <a href="#s3"><span class="n">03</span> แอปบนคอม</a>
     <a href="#s4"><span class="n">04</span> เทคนิคคุย</a>
-    <a href="#s5"><span class="n">05</span> ตัวอย่างจริง</a>
-    <a href="#s6"><span class="n">06</span> ข้อควรระวัง</a>
+    <a href="#s5"><span class="n">05</span> งานบัญชี</a>
+    <a href="#s6"><span class="n">06</span> FAQ</a>
+    <a href="#s7"><span class="n">07</span> คำศัพท์</a>
+    <a href="#s8"><span class="n">08</span> ข้อควรระวัง</a>
   </div>
 </nav>
 
@@ -228,7 +252,7 @@
       <div class="t">
         <span class="eyebrow">ทำความรู้จัก</span>
         <h2>Claude คืออะไร แล้วมี 2 หน้าตายังไง</h2>
-        <p class="sub">Claude คือ AI ผู้ช่วยที่คุยโต้ตอบเป็นภาษาไทยได้ ช่วยคิด–เขียน–สรุป–แปล ให้งานเร็วขึ้น · เข้าใช้ได้ 2 ทาง บัญชีเดียวกัน</p>
+        <p class="sub">Claude คือ AI ผู้ช่วยที่คุยโต้ตอบเป็นภาษาไทยได้ ช่วยคิด–คำนวณ–สรุป–จัดตาราง ให้งานบัญชีเร็วขึ้น · เข้าใช้ได้ 2 ทาง บัญชีเดียวกัน</p>
       </div>
     </div>
 
@@ -247,8 +271,8 @@
         <h3><span class="em">💻</span> Claude Desktop (แอปบนคอม)</h3>
         <ul>
           <li><span class="b">✓</span> เปิดเร็ว อยู่บนคอมตลอด กดเรียกได้ทันที</li>
-          <li><span class="b">✓</span> ลากไฟล์/รูปในเครื่องเข้ามาคุยง่าย</li>
-          <li><span class="b">✓</span> เหมาะเวลาทำงานจริงจังบนคอม</li>
+          <li><span class="b">✓</span> ลากไฟล์ Excel/รูปสลิปเข้ามาคุยง่าย</li>
+          <li><span class="b">✓</span> เหมาะเวลานั่งปิดบัญชีจริงจังบนคอม</li>
         </ul>
       </div>
     </div>
@@ -261,30 +285,44 @@
       <div class="stage-num">02</div>
       <div class="t">
         <span class="eyebrow">ใช้บนเว็บ · claude.ai</span>
-        <h2>เริ่มคุยกับ Claude บนเว็บ</h2>
-        <p class="sub">เปิดเบราว์เซอร์ ล็อกอิน แล้วพิมพ์คุยได้เลย — ง่ายเหมือนแชทกับเพื่อน</p>
+        <h2>เริ่มคุยกับ Claude บนเว็บ (ทีละหน้าจอ)</h2>
+        <p class="sub">เปิดเบราว์เซอร์ ล็อกอิน แล้วพิมพ์คุยได้เลย — ทำตามทีละขั้น</p>
       </div>
     </div>
 
     <div class="steps rev">
       <div class="step"><div class="body">
-        <h4>เข้า claude.ai แล้วล็อกอิน</h4>
-        <p>เปิดเบราว์เซอร์ → พิมพ์ <b>claude.ai</b> → ล็อกอินด้วยบัญชีที่สมัครไว้ (บัญชี Pro เดียวกับที่ใช้กับระบบ)</p>
+        <h4>เปิดเบราว์เซอร์แล้วเข้า claude.ai</h4>
+        <p>เปิด Chrome (หรือ Edge) → คลิกช่องที่อยู่ด้านบนสุด → พิมพ์ <b>claude.ai</b> แล้วกด Enter</p>
+        <div class="mini"><span>💡</span><span><b>คือ</b> ช่องที่อยู่ (Address bar) = แถบยาวบนสุดของเบราว์เซอร์ที่พิมพ์ชื่อเว็บ</span></div>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: หน้าแรก claude.ai ก่อนล็อกอิน</b>แคปหน้าจอตอนเปิดเว็บมาวางตรงนี้</span></div>
+      </div></div>
+      <div class="step"><div class="body">
+        <h4>ล็อกอินด้วยบัญชีที่สมัครไว้</h4>
+        <p>กด <b>Log in</b> → กรอกอีเมล + รหัสผ่าน (หรือปุ่ม “Continue with Google”) → เข้าสู่หน้าแชท</p>
+        <div class="mini"><span>🔑</span><span>ใช้บัญชี Pro เดียวกับที่ใช้กับระบบ — ถ้าลืมรหัส กด “Forgot password”</span></div>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: หน้าแชทเปล่าหลังล็อกอิน</b>ให้เห็นช่องพิมพ์ข้อความด้านล่าง</span></div>
       </div></div>
       <div class="step"><div class="body">
         <h4>พิมพ์สิ่งที่อยากให้ช่วยในช่องล่าง</h4>
-        <p>พิมพ์เป็นภาษาไทยได้เลย เช่น “ช่วยร่างข้อความตอบลูกค้าที่ถามเรื่องการจัดส่ง” แล้วกด Enter</p>
+        <p>คลิกช่องพิมพ์ด้านล่าง → พิมพ์เป็นภาษาไทยได้เลย เช่น “ช่วยสรุปยอดขายจากรายการนี้” → กด Enter (หรือปุ่มลูกศร ➤)</p>
+        <div class="mini"><span>⏎</span><span>ขึ้นบรรทัดใหม่โดยไม่ส่ง = กด <b>Shift + Enter</b></span></div>
+      </div></div>
+      <div class="step"><div class="body">
+        <h4>แนบไฟล์ Excel หรือรูปสลิป (ปุ่ม 📎)</h4>
+        <p>กดปุ่มคลิปหนีบ 📎 ข้างช่องพิมพ์ → เลือกไฟล์รายการออเดอร์/สลิป → หรือ <b>ลากไฟล์</b>มาวางในช่องแชทตรง ๆ ก็ได้ แล้วพิมพ์บอกว่าให้ทำอะไร</p>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: ตอนแนบไฟล์ Excel เข้าไปในแชท</b>ให้เห็นไฟล์แนบอยู่เหนือช่องพิมพ์</span></div>
       </div></div>
       <div class="step"><div class="body">
         <h4>คุยต่อเพื่อปรับให้ถูกใจ</h4>
-        <p>ไม่ต้องได้ครั้งเดียวจบ — พิมพ์ต่อได้ เช่น “ขอสั้นกว่านี้” / “เปลี่ยนเป็นโทนสุภาพ” / “ใส่อีโมจิด้วย” Claude จะปรับให้</p>
+        <p>ไม่ต้องได้ครั้งเดียวจบ — พิมพ์ต่อได้ เช่น “แยกตามสินค้าด้วย” / “ทำเป็นตาราง” / “ใส่ยอด VAT” Claude จะปรับให้ในแชทเดิม</p>
       </div></div>
       <div class="step"><div class="body">
-        <h4>แนบไฟล์หรือรูปได้ (ปุ่ม 📎)</h4>
-        <p>ลากไฟล์ Excel รายการสินค้า หรือรูปสลิป/แชตลูกค้า เข้ามาให้ Claude อ่านแล้วช่วยสรุป/จัดตารางได้</p>
+        <h4>เริ่มแชทใหม่เมื่อเปลี่ยนเรื่อง</h4>
+        <p>ขึ้นงานใหม่ที่ไม่เกี่ยวกับอันเดิม → กด <b>New chat</b> (มุมซ้ายบน) เพื่อให้ Claude เริ่มสด ไม่สับสนกับข้อมูลเก่า</p>
       </div></div>
     </div>
-    <div class="note gold rev"><span class="ni">🗂️</span><div><b>เคล็ดลับ Projects:</b> ถ้าใช้บ่อย สร้าง “Project” เก็บข้อมูลร้าน (สินค้า/โทนแบรนด์/คำที่ห้ามใช้) ไว้ครั้งเดียว แล้วทุกแชทในโปรเจกต์นั้น Claude จะจำบริบทร้านให้ ไม่ต้องเล่าใหม่ทุกครั้ง</div></div>
+    <div class="note gold rev"><span class="ni">🗂️</span><div><b>เคล็ดลับ Projects:</b> ถ้าใช้บ่อย สร้าง “Project” เก็บข้อมูลร้านไว้ครั้งเดียว (รายการสินค้า+ต้นทุน · เลข VAT · รูปแบบตารางที่สำนักงานบัญชีอยากได้) แล้วทุกแชทในโปรเจกต์นั้น Claude จะจำบริบทให้ ไม่ต้องเล่าใหม่ทุกครั้ง</div></div>
   </section>
 
   <!-- S3 -->
@@ -293,29 +331,36 @@
       <div class="stage-num">03</div>
       <div class="t">
         <span class="eyebrow">แอปบนคอม · Claude Desktop</span>
-        <h2>ติดตั้งแอป Claude ลงคอม</h2>
-        <p class="sub">เหมือนเว็บแต่เปิดเร็วกว่า อยู่บนคอมพร้อมเรียกใช้ตลอด — เหมาะเวลานั่งทำงานหน้าคอมจริงจัง</p>
+        <h2>ติดตั้งแอป Claude ลงคอม (ทีละหน้าจอ)</h2>
+        <p class="sub">เหมือนเว็บแต่เปิดเร็วกว่า อยู่บนคอมพร้อมเรียกตลอด — เหมาะเวลานั่งปิดบัญชีหน้าคอมจริงจัง</p>
       </div>
     </div>
 
     <div class="steps rev">
       <div class="step"><div class="body">
         <h4>ดาวน์โหลดแอป</h4>
-        <p>เข้า <b>claude.ai/download</b> → กดโหลดเวอร์ชัน <b>Windows</b> → เปิดไฟล์ที่โหลด → กดติดตั้งจนเสร็จ</p>
+        <p>เข้า <b>claude.ai/download</b> → กดปุ่มโหลดเวอร์ชัน <b>Windows</b> → รอไฟล์โหลดเสร็จ (ดูที่มุมล่างของเบราว์เซอร์ หรือโฟลเดอร์ Downloads)</p>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: หน้า claude.ai/download ปุ่ม Windows</b></span></div>
+      </div></div>
+      <div class="step"><div class="body">
+        <h4>เปิดไฟล์แล้วติดตั้ง</h4>
+        <p>ดับเบิลคลิกไฟล์ที่โหลดมา → ถ้า Windows ถามยืนยัน กด <b>Yes / Run</b> → รอติดตั้งจนเสร็จ (ไม่กี่วินาที)</p>
       </div></div>
       <div class="step"><div class="body">
         <h4>เปิดแอปแล้วล็อกอิน</h4>
-        <p>เปิดแอป Claude → ล็อกอินด้วยบัญชี Pro เดียวกับบนเว็บ → พร้อมใช้งานทันที (ประวัติแชทเดิมขึ้นมาให้ด้วย)</p>
+        <p>เปิดแอป Claude ที่เพิ่งลง → ล็อกอินด้วยบัญชี Pro เดียวกับบนเว็บ → พร้อมใช้งานทันที (ประวัติแชทเดิมขึ้นมาให้ด้วย)</p>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: หน้าแอป Claude Desktop หลังเปิด</b></span></div>
       </div></div>
       <div class="step"><div class="body">
         <h4>ปักหมุดไว้ที่แถบงาน (Taskbar)</h4>
-        <p>คลิกขวาที่ไอคอน Claude ที่แถบล่าง → <b>Pin to taskbar</b> → คราวหน้ากดเรียกได้ทันทีไม่ต้องหา</p>
+        <p>คลิกขวาที่ไอคอน Claude ที่แถบล่างของจอ → เลือก <b>Pin to taskbar</b> → คราวหน้ากดเรียกได้ทันทีไม่ต้องหา</p>
+        <div class="mini"><span>📌</span><span><b>Taskbar</b> = แถบล่างสุดของจอ Windows ที่มีไอคอนโปรแกรมเรียงอยู่</span></div>
       </div></div>
     </div>
 
     <div class="grid3 rev" style="margin-top:24px">
       <div class="card"><span class="kico">⚡</span><h3>เปิดไว ใช้ทันใจ</h3><p>ไม่ต้องเปิดเบราว์เซอร์ หาแท็บ — กดไอคอนเดียวพร้อมพิมพ์</p></div>
-      <div class="card"><span class="kico">📎</span><h3>ลากไฟล์ง่าย</h3><p>ลากไฟล์/รูปจากในเครื่องเข้าหน้าต่างแอปได้ตรง ๆ</p></div>
+      <div class="card"><span class="kico">📎</span><h3>ลากไฟล์ง่าย</h3><p>ลากไฟล์ Excel/รูปสลิปจากในเครื่องเข้าหน้าต่างแอปได้ตรง ๆ</p></div>
       <div class="card"><span class="kico">🔄</span><h3>ซิงก์กับเว็บ</h3><p>คุยบนคอมแล้วเปิดต่อบนมือถือได้ ประวัติเดียวกัน</p></div>
     </div>
   </section>
@@ -327,15 +372,15 @@
       <div class="t">
         <span class="eyebrow">เทคนิคคุยให้ได้งานดี</span>
         <h2>4 เคล็ดลับ ให้ Claude ตอบตรงใจ</h2>
-        <p class="sub">ยิ่งบอกละเอียด ยิ่งได้งานตรง — เหมือนสั่งงานน้องในทีมที่เก่งแต่ต้องบรีฟให้ชัด</p>
+        <p class="sub">ยิ่งบอกละเอียด ยิ่งได้งานตรง — เหมือนสั่งงานผู้ช่วยที่เก่งแต่ต้องบรีฟให้ชัด</p>
       </div>
     </div>
 
     <div class="grid2 rev">
-      <div class="card"><span class="kico">🎯</span><h3>1. บอกบริบทให้ชัด</h3><p>เล่าว่าคุณคือใคร ขายอะไร ลูกค้าแบบไหน เช่น “ร้านขายครีมบำรุงผิว กาแฟ และชาเขียวแบบซอง ลูกค้าเป็นผู้หญิงวัยทำงาน”</p></div>
-      <div class="card"><span class="kico">🖼️</span><h3>2. ยกตัวอย่างที่ชอบ</h3><p>มีแคปชั่น/สไตล์ที่ถูกใจอยู่แล้ว วางให้ดูเป็นตัวอย่าง แล้วบอก “เอาแนวนี้”</p></div>
-      <div class="card"><span class="kico">📏</span><h3>3. บอกโทนและความยาว</h3><p>เช่น “สุภาพเป็นทางการ” / “สนุกวัยรุ่น” / “สั้น 2 บรรทัด” / “มีอีโมจิ”</p></div>
-      <div class="card"><span class="kico">🔁</span><h3>4. ขอหลายแบบแล้วเลือก</h3><p>“ขอ 5 แบบให้เลือก” แล้วค่อยบอก “เอาแบบ 3 แต่ปรับตอนท้าย” — คุยปรับไปเรื่อย ๆ ได้</p></div>
+      <div class="card"><span class="kico">🎯</span><h3>1. บอกบริบทให้ชัด</h3><p>เล่าว่าร้านขายอะไร ต้องการรายงานแบบไหน เช่น “ร้านขายครีม กาแฟ ชาเขียวแบบซอง อยากได้สรุปยอดแยกเงินสด/โอน ส่งสำนักงานบัญชี”</p></div>
+      <div class="card"><span class="kico">📄</span><h3>2. ให้ข้อมูล/ตัวอย่างที่มี</h3><p>วางรายการออเดอร์ หรือแนบไฟล์ Excel เข้าไป — ยิ่ง Claude เห็นข้อมูลจริง ยิ่งสรุปได้แม่น</p></div>
+      <div class="card"><span class="kico">📏</span><h3>3. บอกรูปแบบผลลัพธ์</h3><p>เช่น “ทำเป็นตาราง” / “แยกคอลัมน์ วันที่–สินค้า–ยอด–วิธีชำระ” / “สรุปเป็นข้อ ๆ” / “บอกยอดรวมท้ายตาราง”</p></div>
+      <div class="card"><span class="kico">🔁</span><h3>4. ตรวจแล้วขอปรับ</h3><p>อ่านผลแล้วบอกแก้ได้ เช่น “ยอด VAT คิดจากยอดก่อนภาษีนะ” / “แยกกาแฟกับชาเขียวคนละแถว” — คุยปรับไปเรื่อย ๆ ได้</p></div>
     </div>
   </section>
 
@@ -344,73 +389,146 @@
     <div class="stage-head rev">
       <div class="stage-num">05</div>
       <div class="t">
-        <span class="eyebrow">ตัวอย่างงานจริง · กานต์ชุดา</span>
+        <span class="eyebrow">ตัวอย่างงานบัญชีจริง · กานต์ชุดา</span>
         <h2>เอาไปใช้ได้เลย — ก็อปแล้วลองเลย</h2>
-        <p class="sub">ตัวอย่างคำสั่งที่ใช้ได้จริงกับงานประจำวันของร้าน — กดปุ่มคัดลอกแล้วเอาไปวางใน Claude</p>
+        <p class="sub">ตัวอย่างคำสั่งงานบัญชี/การเงินของร้าน กดปุ่มคัดลอกแล้ววางใน Claude พร้อมแนบข้อมูล/ไฟล์ของจริง</p>
       </div>
     </div>
 
+    <h3 style="margin:0 0 14px;font-size:18px" class="rev">📊 งานบัญชี & การเงิน</h3>
+    <div class="grid2 rev">
+      <div class="prompt">
+        <span class="tag">📊 สรุปยอดขายรายวัน</span>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">นี่รายการออเดอร์วันนี้ (วาง/แนบไฟล์) ช่วยสรุปยอดขายรวม จำนวนออเดอร์ และแยกตามสินค้า (ครีม/กาแฟ/ชาเขียว) เป็นตาราง</span></div>
+        <button class="copy" data-cmd="นี่รายการออเดอร์วันนี้ ช่วยสรุปยอดขายรวม จำนวนออเดอร์ และแยกตามสินค้า (ครีม/กาแฟ/ชาเขียว) เป็นตาราง">คัดลอก</button>
+      </div>
+      <div class="prompt">
+        <span class="tag">💰 กระทบยอดเงินเข้า</span>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">ช่วยเทียบยอดโอนเข้าบัญชี (แนบสเตทเมนต์) กับรายการออเดอร์โอน ว่ายอดตรงกันไหม มีออเดอร์ไหนที่ยังไม่เข้าเงิน</span></div>
+        <button class="copy" data-cmd="ช่วยเทียบยอดโอนเข้าบัญชีกับรายการออเดอร์โอน ว่ายอดตรงกันไหม มีออเดอร์ไหนที่ยังไม่เข้าเงิน">คัดลอก</button>
+      </div>
+      <div class="prompt">
+        <span class="tag">🧾 คำนวณ VAT</span>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">ยอดขายรวม (รวม VAT แล้ว) คือ 24,580 บาท ช่วยแยกยอดก่อน VAT และ VAT 7% ให้เห็นชัด ๆ</span></div>
+        <button class="copy" data-cmd="ยอดขายรวม (รวม VAT แล้ว) คือ 24,580 บาท ช่วยแยกยอดก่อน VAT และ VAT 7% ให้เห็นชัด ๆ">คัดลอก</button>
+      </div>
+      <div class="prompt">
+        <span class="tag">📁 รายงานส่งสำนักงานบัญชี</span>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">ช่วยจัดสรุปยอดขายเดือนนี้เป็นตารางสำหรับส่งสำนักงานบัญชี แยกเงินสด(COD)/โอน และแสดงยอดก่อน VAT + VAT + ยอดสุทธิ</span></div>
+        <button class="copy" data-cmd="ช่วยจัดสรุปยอดขายเดือนนี้เป็นตารางสำหรับส่งสำนักงานบัญชี แยกเงินสด(COD)/โอน และแสดงยอดก่อน VAT + VAT + ยอดสุทธิ">คัดลอก</button>
+      </div>
+      <div class="prompt">
+        <span class="tag">📦 แยก COD ที่ต้องตามเก็บ</span>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">จากรายการนี้ ช่วยแยกออเดอร์ COD ที่ขนส่งยังไม่โอนเงินคืน พร้อมยอดรวมที่ยังค้างรับ</span></div>
+        <button class="copy" data-cmd="จากรายการนี้ ช่วยแยกออเดอร์ COD ที่ขนส่งยังไม่โอนเงินคืน พร้อมยอดรวมที่ยังค้างรับ">คัดลอก</button>
+      </div>
+      <div class="prompt">
+        <span class="tag">🔢 คำนวณกำไรต่อสินค้า</span>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">เซ็ต SET-8 ต้นทุน 400 บาท ขาย 799 บาท ช่วยคำนวณกำไรต่อชิ้นและ % กำไร แล้วถ้าขายได้ 30 ชิ้นได้กำไรเท่าไร</span></div>
+        <button class="copy" data-cmd="เซ็ต SET-8 ต้นทุน 400 บาท ขาย 799 บาท ช่วยคำนวณกำไรต่อชิ้นและ % กำไร แล้วถ้าขายได้ 30 ชิ้นได้กำไรเท่าไร">คัดลอก</button>
+      </div>
+      <div class="prompt">
+        <span class="tag">📉 สรุปรายรับ–รายจ่าย</span>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">นี่รายการรายรับรายจ่ายเดือนนี้ (แนบไฟล์) ช่วยสรุปกำไรขั้นต้น และจัดหมวดค่าใช้จ่ายที่สูงสุด 3 อันดับ</span></div>
+        <button class="copy" data-cmd="นี่รายการรายรับรายจ่ายเดือนนี้ ช่วยสรุปกำไรขั้นต้น และจัดหมวดค่าใช้จ่ายที่สูงสุด 3 อันดับ">คัดลอก</button>
+      </div>
+      <div class="prompt">
+        <span class="tag">📅 เทียบยอดข้ามเดือน</span>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">ช่วยเทียบยอดขายเดือนนี้กับเดือนที่แล้ว บอกว่าเพิ่ม/ลดกี่ % และสินค้าตัวไหนขายดีขึ้นชัดสุด</span></div>
+        <button class="copy" data-cmd="ช่วยเทียบยอดขายเดือนนี้กับเดือนที่แล้ว บอกว่าเพิ่ม/ลดกี่ % และสินค้าตัวไหนขายดีขึ้นชัดสุด">คัดลอก</button>
+      </div>
+    </div>
+
+    <h3 style="margin:28px 0 14px;font-size:18px" class="rev">✍️ งานขาย & ลูกค้า (โบนัส)</h3>
     <div class="grid2 rev">
       <div class="prompt">
         <span class="tag">✍️ คิดแคปชั่นขายของ</span>
-        <div class="say me"><span class="who">คุณ</span><span class="txt">ช่วยคิดแคปชั่นขายเซ็ต SET-8 ราคา 799 บาท โทนน่ารักสดใส สั้น ๆ 3 แบบ ใส่อีโมจิ</span></div>
-        <button class="copy" data-cmd="ช่วยคิดแคปชั่นขายเซ็ต SET-8 ราคา 799 บาท โทนน่ารักสดใส สั้น ๆ 3 แบบ ใส่อีโมจิ">คัดลอก</button>
+        <div class="say me"><span class="who">คุณ</span><span class="txt">ช่วยคิดแคปชั่นขายเซ็ตครีม SET-8 ราคา 799 บาท โทนน่ารักสดใส สั้น ๆ 3 แบบ ใส่อีโมจิ</span></div>
+        <button class="copy" data-cmd="ช่วยคิดแคปชั่นขายเซ็ตครีม SET-8 ราคา 799 บาท โทนน่ารักสดใส สั้น ๆ 3 แบบ ใส่อีโมจิ">คัดลอก</button>
       </div>
       <div class="prompt">
         <span class="tag">💬 ตอบแชทลูกค้า</span>
         <div class="say me"><span class="who">คุณ</span><span class="txt">ลูกค้าถามว่ากาแฟซองนี้หวานมากไหม เหมาะกับคนคุมน้ำตาลหรือเปล่า ช่วยร่างคำตอบสุภาพ ชัดเจน ไม่การันตีเกินจริง</span></div>
         <button class="copy" data-cmd="ลูกค้าถามว่ากาแฟซองนี้หวานมากไหม เหมาะกับคนคุมน้ำตาลหรือเปล่า ช่วยร่างคำตอบสุภาพ ชัดเจน ไม่การันตีเกินจริง">คัดลอก</button>
       </div>
-      <div class="prompt">
-        <span class="tag">📊 สรุปยอด/จัดตาราง</span>
-        <div class="say me"><span class="who">คุณ</span><span class="txt">นี่คือรายการออเดอร์วันนี้ (วางข้อความ/แนบไฟล์) ช่วยสรุปยอดรวมและนับจำนวนต่อสินค้าเป็นตาราง</span></div>
-        <button class="copy" data-cmd="นี่คือรายการออเดอร์วันนี้ ช่วยสรุปยอดรวมและนับจำนวนต่อสินค้าเป็นตาราง">คัดลอก</button>
-      </div>
-      <div class="prompt">
-        <span class="tag">🎁 คิดโปรโมชั่น</span>
-        <div class="say me"><span class="who">คุณ</span><span class="txt">ช่วยคิดไอเดียโปรโมชั่นเดือนหน้าสำหรับร้านขายครีมบำรุงผิว กาแฟ และชาเขียวแบบซอง 5 ไอเดีย พร้อมชื่อแคมเปญ</span></div>
-        <button class="copy" data-cmd="ช่วยคิดไอเดียโปรโมชั่นเดือนหน้าสำหรับร้านขายครีมบำรุงผิว กาแฟ และชาเขียวแบบซอง 5 ไอเดีย พร้อมชื่อแคมเปญ">คัดลอก</button>
-      </div>
-      <div class="prompt">
-        <span class="tag">🌏 แปลภาษา</span>
-        <div class="say me"><span class="who">คุณ</span><span class="txt">ช่วยแปลรีวิวลูกค้าภาษาอังกฤษนี้เป็นไทย แล้วสรุปว่าลูกค้าพอใจเรื่องอะไร</span></div>
-        <button class="copy" data-cmd="ช่วยแปลรีวิวลูกค้าภาษาอังกฤษนี้เป็นไทย แล้วสรุปว่าลูกค้าพอใจเรื่องอะไร">คัดลอก</button>
-      </div>
-      <div class="prompt">
-        <span class="tag">📣 เขียนประกาศ</span>
-        <div class="say me"><span class="who">คุณ</span><span class="txt">ช่วยร่างประกาศเปิดตัวชาเขียวซองรสใหม่ ให้สุภาพ น่าสนใจ ชวนลูกค้าลองสั่ง</span></div>
-        <button class="copy" data-cmd="ช่วยร่างประกาศเปิดตัวชาเขียวซองรสใหม่ ให้สุภาพ น่าสนใจ ชวนลูกค้าลองสั่ง">คัดลอก</button>
-      </div>
     </div>
+
+    <div class="note warn rev"><span class="ni">✅</span><div><b>ตรวจตัวเลขทุกครั้งก่อนใช้จริง</b> — Claude ช่วยคิดเลขได้เร็วและดี แต่กับ “ตัวเลขเงิน” ที่ส่งสำนักงานบัญชี/ยื่นภาษี ควรอ่านทวนหรือกดเครื่องคิดเลขเช็คจุดสำคัญเสมอ</div></div>
   </section>
 
-  <!-- S6 -->
+  <!-- S6 FAQ -->
   <section class="stage" id="s6">
     <div class="stage-head rev">
       <div class="stage-num">06</div>
       <div class="t">
+        <span class="eyebrow">คำถามที่พบบ่อย</span>
+        <h2>FAQ &amp; แก้ปัญหา</h2>
+        <p class="sub">คำถามที่มักเจอตอนเริ่มใช้ — คลิกที่คำถามเพื่อดูคำตอบ</p>
+      </div>
+    </div>
+
+    <div class="rev">
+      <details class="faq"><summary>พิมพ์ภาษาไทยได้ไหม ต้องเป็นภาษาอังกฤษหรือเปล่า?</summary><div class="fa">พิมพ์ไทยได้เลยค่ะ Claude เข้าใจและตอบไทยได้ดี ไม่ต้องแปลเป็นอังกฤษ</div></details>
+      <details class="faq"><summary>Claude คิดเลขบัญชีถูกต้องไหม?</summary><div class="fa">ช่วยคิดได้ดีและเร็ว โดยเฉพาะสรุป/จัดตาราง แต่ <b>กับตัวเลขเงินที่สำคัญ ควรตรวจทานเสมอ</b> — ให้ Claude ช่วยร่าง แล้วเราเป็นคนเช็คจุดตัดสินใจสุดท้าย</div></details>
+      <details class="faq"><summary>แนบไฟล์ Excel หรือรูปสลิปได้ไหม?</summary><div class="fa">ได้ค่ะ กดปุ่มคลิป 📎 หรือลากไฟล์มาวางในช่องแชท แล้วพิมพ์บอกว่าให้ทำอะไร เช่น “สรุปยอดจากไฟล์นี้เป็นตาราง”</div></details>
+      <details class="faq"><summary>ข้อมูลที่พิมพ์เข้าไปปลอดภัยไหม?</summary><div class="fa">การสนทนาเป็นส่วนตัวของบัญชีเรา แต่ควร <b>เลี่ยงใส่ข้อมูลลับที่ไม่จำเป็น</b> เช่น เลขบัตรประชาชน/รหัสผ่าน/เลขบัญชีเต็มของลูกค้า (ดูหัวข้อ “ข้อควรระวัง”)</div></details>
+      <details class="faq"><summary>ต้องจ่ายเพิ่มไหม นอกจากค่า Pro?</summary><div class="fa">ไม่ต้องค่ะ แพ็กเกจ Pro $20/เดือน ใช้ได้ทั้ง claude.ai (เว็บ) และ Claude Desktop (แอปคอม) ด้วยบัญชีเดียว</div></details>
+      <details class="faq"><summary>แชทเก่าหายไหม กลับไปดูได้ไหม?</summary><div class="fa">ไม่หายค่ะ แชทเก่าเก็บอยู่ในแถบประวัติด้านซ้าย คลิกเปิดดูย้อนหลังได้ — ตั้งชื่อแชทให้จำง่ายก็ได้</div></details>
+      <details class="faq"><summary>Claude ตอบผิด/ไม่ตรงที่ต้องการ ทำยังไง?</summary><div class="fa">พิมพ์บอกแก้ได้เลย เช่น “ไม่ใช่แบบนี้ ขอแยกคอลัมน์วิธีชำระด้วย” — ยิ่งบอกชัดว่าอยากได้อะไร ยิ่งตรง · หรือกด New chat เริ่มใหม่พร้อมบรีฟที่ละเอียดกว่าเดิม</div></details>
+      <details class="faq"><summary>ให้ช่วยงานทั้งบัญชีและการตลาดในแชทเดียวได้ไหม?</summary><div class="fa">ได้ แต่แนะนำ <b>แยกแชท/แยก Project ตามเรื่อง</b> จะเป็นระเบียบและ Claude ไม่สับสนบริบท เช่น แชทหนึ่งไว้ปิดบัญชี อีกแชทไว้คิดแคปชั่น</div></details>
+    </div>
+  </section>
+
+  <!-- S7 Glossary -->
+  <section class="stage" id="s7">
+    <div class="stage-head rev">
+      <div class="stage-num">07</div>
+      <div class="t">
+        <span class="eyebrow">คำศัพท์ที่ควรรู้</span>
+        <h2>ศัพท์ที่เจอบ่อย เข้าใจง่าย ๆ</h2>
+        <p class="sub">คำที่จะเห็นบ่อยตอนใช้ Claude — รู้ไว้จะคุยคล่องขึ้น</p>
+      </div>
+    </div>
+
+    <dl class="gloss rev">
+      <div class="gterm"><dt>Prompt (พรอมต์)</dt><dd>ข้อความ/คำสั่งที่เราพิมพ์บอก Claude เช่น “สรุปยอดขายให้หน่อย” = 1 prompt</dd></div>
+      <div class="gterm"><dt>claude.ai</dt><dd>เว็บสำหรับใช้ Claude ผ่านเบราว์เซอร์ ไม่ต้องติดตั้งอะไร</dd></div>
+      <div class="gterm"><dt>Claude Desktop</dt><dd>แอป Claude ที่ติดตั้งบนคอม เปิดใช้ได้เร็วกว่าเปิดผ่านเว็บ</dd></div>
+      <div class="gterm"><dt>Project (โปรเจกต์)</dt><dd>พื้นที่เก็บบริบทงานไว้ครั้งเดียว (เช่น ข้อมูลร้าน) ให้ Claude จำในทุกแชทของโปรเจกต์นั้น</dd></div>
+      <div class="gterm"><dt>New chat</dt><dd>เริ่มแชทใหม่หน้าเปล่า ใช้เมื่อขึ้นงานคนละเรื่อง จะได้ไม่ปนกับข้อมูลเก่า</dd></div>
+      <div class="gterm"><dt>แนบไฟล์ (Attach)</dt><dd>ส่งไฟล์ Excel/รูป/PDF ให้ Claude อ่าน ด้วยปุ่มคลิป 📎 หรือลากไฟล์เข้าไป</dd></div>
+      <div class="gterm"><dt>Pro Plan</dt><dd>แพ็กเกจ $20/เดือน ที่เปิดให้ใช้ Claude ได้เต็มที่ ทั้งเว็บและแอปคอม</dd></div>
+      <div class="gterm"><dt>โมเดล (Model)</dt><dd>“สมอง” เวอร์ชันต่าง ๆ ของ Claude ปกติใช้ค่าเริ่มต้นก็พอ ไม่ต้องปรับอะไร</dd></div>
+    </dl>
+  </section>
+
+  <!-- S8 -->
+  <section class="stage" id="s8">
+    <div class="stage-head rev">
+      <div class="stage-num">08</div>
+      <div class="t">
         <span class="eyebrow">ข้อควรระวัง</span>
         <h2>ใช้ให้ปลอดภัยและได้ผลดี</h2>
-        <p class="sub">Claude เป็นผู้ช่วยที่เก่ง แต่มี 3 เรื่องที่ควรจำไว้</p>
+        <p class="sub">Claude เป็นผู้ช่วยที่เก่ง แต่มี 3 เรื่องที่ควรจำไว้ โดยเฉพาะงานที่เกี่ยวกับเงิน</p>
       </div>
     </div>
 
     <div style="display:flex;flex-direction:column;gap:14px" class="rev">
+      <div class="pit"><span class="pi">✅</span><div>
+        <h4>ตรวจตัวเลขเงินก่อนใช้จริงเสมอ</h4>
+        <p>โดยเฉพาะยอดที่ส่งสำนักงานบัญชี ยื่นภาษี หรือใช้ตัดสินใจ — Claude ช่วยร่าง/คำนวณให้เร็ว แต่คนเป็นผู้ตรวจและรับผิดชอบตัวเลขสุดท้าย</p>
+      </div></div>
       <div class="pit"><span class="pi">🔒</span><div>
         <h4>อย่าใส่ข้อมูลลับที่ไม่จำเป็น</h4>
-        <p>เลี่ยงการวางเลขบัตรประชาชน รหัสผ่าน เลขบัญชีเต็ม ๆ ของลูกค้า/พนักงาน ลงในแชทถ้าไม่จำเป็นต่องาน</p>
-      </div></div>
-      <div class="pit"><span class="pi">✅</span><div>
-        <h4>ตรวจก่อนใช้จริงเสมอ</h4>
-        <p>โดยเฉพาะ “ตัวเลข” และ “ข้อเท็จจริง” — Claude ช่วยร่างให้เร็ว แต่คนตัดสินใจสุดท้ายคือเรา อ่านทวนก่อนส่งลูกค้า</p>
+        <p>เลี่ยงวางเลขบัตรประชาชน รหัสผ่าน หรือเลขบัญชีเต็ม ๆ ของลูกค้า/พนักงาน ถ้าไม่จำเป็นต่องาน — ตัดเฉพาะส่วนที่ Claude ต้องใช้พอ</p>
       </div></div>
       <div class="pit"><span class="pi">🗓️</span><div>
         <h4>Claude ไม่รู้ข้อมูลเฉพาะร้านเราเอง</h4>
-        <p>ราคาล่าสุด สต็อก โปรที่กำลังจัด — ต้องบอก/แนบให้ Claude ก่อน ถึงจะช่วยได้ตรง (หรือเก็บไว้ใน Project)</p>
+        <p>ราคาล่าสุด ต้นทุน สต็อก ยอดในบัญชี — ต้องบอก/แนบให้ Claude ก่อน ถึงจะช่วยได้ตรง (หรือเก็บไว้ใน Project ให้จำถาวร)</p>
       </div></div>
     </div>
 
-    <div class="note tip rev"><span class="ni">🙌</span><div>เริ่มจากลองเล่นวันละนิด — ให้ช่วยงานเล็ก ๆ ก่อน เช่น ร่างแคปชั่น 1 โพสต์ แล้วจะค่อย ๆ จับทางว่าคุยยังไงได้งานดีที่สุด</div></div>
+    <div class="note tip rev"><span class="ni">🙌</span><div>เริ่มจากลองงานเล็ก ๆ ก่อน เช่น ให้สรุปยอดขาย 1 วัน แล้วเทียบกับที่เราคิดเอง — พอมั่นใจว่าตรง ค่อยขยับไปงานใหญ่ขึ้น จะจับทางได้เร็ว</div></div>
   </section>
 
 </main>
@@ -424,12 +542,13 @@
         <span class="x">×</span>
         <span class="cc">Claude</span>
       </div>
-      <p class="ftag" style="margin-top:12px">คู่มือเริ่มใช้ Claude ช่วยงาน</p>
+      <p class="ftag" style="margin-top:12px">คู่มือเริ่มใช้ Claude ช่วยงานบัญชี</p>
     </div>
     <div class="fmeta">
       จัดทำโดย <b>Moodata</b><br>
       สอบถามเพิ่มเติม: <a href="mailto:phusita@moodata.me">phusita@moodata.me</a><br>
-      คู่มือรับมอบระบบบอท: <a href="https://phusita-png.github.io/kanchuda-guides/handover-claudecode.html" target="_blank" rel="noopener">handover-claudecode</a>
+      คู่มือรับมอบระบบบอท: <a href="https://phusita-png.github.io/kanchuda-guides/handover-claudecode.html" target="_blank" rel="noopener">handover-claudecode</a><br>
+      ศูนย์รวมคู่มือ: <a href="https://phusita-png.github.io/kanchuda-guides/" target="_blank" rel="noopener">kanchuda-guides</a>
     </div>
   </div>
 </footer>
@@ -456,7 +575,7 @@
 
   var revs=document.querySelectorAll('.rev');
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
     revs.forEach(function(r){io.observe(r);});
   }else{revs.forEach(function(r){r.classList.add('in');});}
 
