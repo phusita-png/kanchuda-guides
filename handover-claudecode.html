@@ -306,6 +306,34 @@
     .stage-head{gap:14px}
     .cmd-row code{font-size:12.5px}
   }
+
+  /* mini explainer line under a step */
+  .mini{font-size:13.5px;color:var(--ink-faint);margin-top:9px;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+  .mini b{color:var(--ink-soft)}
+  .mini code{font-family:var(--font-mono);font-size:.9em;background:var(--surface-2);padding:1px 6px;border-radius:5px}
+
+  /* screenshot placeholder */
+  .shot{margin:13px 0 2px;border:2px dashed var(--line-strong);border-radius:12px;background:var(--surface-2);padding:16px 18px;display:flex;gap:13px;align-items:center;color:var(--ink-faint)}
+  .shot .si{font-size:24px;flex:0 0 auto}
+  .shot .st{font-size:13px;line-height:1.45}
+  .shot .st b{color:var(--ink-soft);display:block;font-size:13.5px;font-weight:700}
+
+  /* FAQ */
+  details.faq{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  details.faq+details.faq{margin-top:10px}
+  details.faq summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::after{content:"+";font-family:var(--font-mono);font-size:21px;color:var(--gold);transition:transform .2s;flex:0 0 auto}
+  details.faq[open] summary::after{transform:rotate(45deg)}
+  details.faq .fa{padding:0 20px 18px;color:var(--ink-soft);font-size:15px;line-height:1.6}
+  details.faq .fa code{font-family:var(--font-mono);font-size:.9em;background:var(--surface-2);padding:1px 6px;border-radius:5px}
+
+  /* glossary */
+  .gloss{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0;padding:0}
+  .gterm{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .gterm dt{font-weight:800;font-size:14.5px;color:var(--brand);margin-bottom:5px;font-family:var(--font-mono);word-break:break-word}
+  .gterm dd{margin:0;color:var(--ink-soft);font-size:14px;line-height:1.5}
+  @media (max-width:640px){.gloss{grid-template-columns:1fr}}
 </style>
 
 <div class="topbar">
@@ -357,6 +385,8 @@
     <a href="#s5"><span class="n">05</span> เชื่อมต่อ</a>
     <a href="#s6"><span class="n">06</span> ใช้งานจริง</a>
     <a href="#s7"><span class="n">07</span> เช็คลิสต์</a>
+    <a href="#faq"><span class="n">❓</span> FAQ</a>
+    <a href="#gloss"><span class="n">📖</span> คำศัพท์</a>
   </div>
 </nav>
 
@@ -458,10 +488,14 @@
       <div class="step"><div class="body">
         <h4>เปิดเว็บ claude.ai แล้วกด Sign up</h4>
         <p>เข้า <b>claude.ai</b> → สมัครด้วยอีเมลบริษัท หรือปุ่ม “Continue with Google” (เร็วสุด) → ยืนยันอีเมล</p>
+        <div class="mini"><span>💡</span><span><b>Sign up</b> = สมัครสมาชิกใหม่ · <b>Log in</b> = เข้าสู่ระบบ (ถ้ามีบัญชีอยู่แล้ว)</span></div>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: หน้าสมัคร claude.ai</b>แคปหน้าจอตอนกรอกอีเมลมาวางตรงนี้</span></div>
       </div></div>
       <div class="step"><div class="body">
         <h4>อัปเกรดเป็น Claude Pro</h4>
         <p>กดชื่อบัญชีมุมล่างซ้าย → <b>Upgrade / Plans</b> → เลือก <b>Pro — $20/เดือน</b> → กรอกบัตร → ยืนยัน</p>
+        <div class="mini"><span>💳</span><span>จ่ายด้วยบัตรเครดิต/เดบิต · ตัดเป็นดอลลาร์ ($20 ≈ 700 บาท/เดือน) · ยกเลิกเมื่อไหร่ก็ได้</span></div>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: หน้าเลือกแพ็กเกจ Plans</b>ให้เห็นการ์ด Pro $20</span></div>
         <div class="note gold"><span class="ni">✨</span><div><b>ทำไม Pro ก็พอ:</b> การดูแลบอทเป็นการแก้เป็นครั้งคราว ไม่ได้เขียนใหม่ทั้งวัน โควต้าของ Pro รับไหวสบาย — ถ้าอนาคตแก้บ่อยมากจนโควต้าหมดเร็ว ค่อยขยับเป็น Max ทีหลังได้</div></div>
       </div></div>
       <div class="step"><div class="body">
@@ -482,31 +516,39 @@
       </div>
     </div>
 
+    <div class="note tip rev" style="margin-bottom:20px"><span class="ni">⌨️</span><div><b>PowerShell คืออะไร?</b> คือหน้าต่างดำ ๆ ของ Windows ที่เราพิมพ์คำสั่งให้คอมทำงาน (เรียกว่า “เทอร์มินอล”) · เปิดโดยกดปุ่ม <b>Windows</b> ที่คีย์บอร์ด → พิมพ์ <code>PowerShell</code> → กดเปิด</div></div>
+
     <div class="steps rev">
       <div class="step"><div class="body">
         <h4>ติดตั้ง Node.js — ตัวช่วยเบื้องหลัง</h4>
         <p>เข้า <b>nodejs.org</b> → โหลดปุ่มเขียว <b>“LTS”</b> → เปิดไฟล์ที่โหลด → กด Next ไปเรื่อย ๆ จนเสร็จ (จำเป็นสำหรับติดตั้งอีก 2 ตัวถัดไป)</p>
-        <p>เช็คว่าลงสำเร็จ — เปิด PowerShell แล้วพิมพ์:</p>
+        <div class="mini"><span>💡</span><span><b>Node.js</b> = โปรแกรมพื้นฐานที่ทำให้ติดตั้งเครื่องมือตัวอื่น (Claude Code, clasp) ได้ · <b>LTS</b> = เวอร์ชันเสถียร แนะนำให้โหลดอันนี้</span></div>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: หน้า nodejs.org ปุ่ม LTS สีเขียว</b></span></div>
+        <p style="margin-top:10px">เช็คว่าลงสำเร็จ — เปิด PowerShell แล้วพิมพ์:</p>
         <div class="cmd"><div class="cmd-row"><code><span class="p">&gt; </span>node -v</code><button class="copy" data-cmd="node -v">คัดลอก</button></div></div>
         <p style="margin-top:8px">ถ้าขึ้นเลขเวอร์ชัน (เช่น <span class="mono">v22.x.x</span>) = ผ่าน ✓</p>
       </div></div>
 
       <div class="step"><div class="body">
         <h4>ติดตั้ง Claude Code</h4>
-        <p>ใน PowerShell พิมพ์คำสั่งนี้แล้วกด Enter (รอสักครู่):</p>
+        <p>ใน PowerShell พิมพ์คำสั่งนี้แล้วกด Enter (รอสักครู่ให้ติดตั้งเสร็จ):</p>
         <div class="cmd"><div class="cmd-row"><code><span class="p">&gt; </span>npm install -g @anthropic-ai/claude-code</code><button class="copy" data-cmd="npm install -g @anthropic-ai/claude-code">คัดลอก</button></div></div>
+        <div class="mini"><span>💡</span><span><b>npm</b> = ตัวติดตั้งโปรแกรม (มากับ Node.js) · <b>install -g</b> = ติดตั้งแบบใช้ได้ทั้งเครื่อง · ตัวยาว ๆ ท้ายสุดคือชื่อโปรแกรม Claude Code</span></div>
       </div></div>
 
       <div class="step"><div class="body">
         <h4>ติดตั้ง clasp — สะพานส่งโค้ดขึ้น Google</h4>
         <p>ตัวนี้คือที่ Claude ใช้ “อัปโค้ดขึ้นระบบ” ให้ พิมพ์:</p>
         <div class="cmd"><div class="cmd-row"><code><span class="p">&gt; </span>npm install -g @google/clasp</code><button class="copy" data-cmd="npm install -g @google/clasp">คัดลอก</button></div></div>
+        <div class="mini"><span>🌉</span><span><b>clasp</b> = เครื่องมือของ Google ที่ส่งโค้ดจากคอมเราขึ้นไปที่ Apps Script (ที่บอทรันอยู่) — เหมือน “สะพาน” เชื่อมคอมกับระบบจริง</span></div>
       </div></div>
 
       <div class="step"><div class="body">
         <h4>ล็อกอิน Claude Code ครั้งแรก</h4>
         <p>พิมพ์ <span class="mono">claude</span> เพื่อเปิดโปรแกรม → พิมพ์ <span class="mono">/login</span> → เบราว์เซอร์จะเด้งขึ้นมา → ล็อกอินด้วยบัญชี Claude Pro ที่สมัครไว้ → เสร็จแล้วกลับมาที่ PowerShell</p>
         <div class="cmd"><div class="cmd-row"><code><span class="p">&gt; </span>claude</code><button class="copy" data-cmd="claude">คัดลอก</button></div></div>
+        <div class="mini"><span>🔑</span><span>ทำครั้งเดียวพอ — ครั้งต่อ ๆ ไปพิมพ์ <code>claude</code> เปิดใช้ได้เลย ไม่ต้องล็อกอินซ้ำ</span></div>
+        <div class="shot"><span class="si">📸</span><span class="st"><b>ใส่ภาพ: หน้าจอ Claude Code หลังเปิดสำเร็จ</b>ให้เห็นข้อความต้อนรับ</span></div>
       </div></div>
     </div>
 
@@ -546,6 +588,7 @@
         <h4>เปิด PowerShell “ในโฟลเดอร์นั้น”</h4>
         <p>เปิดโฟลเดอร์ใน File Explorer → คลิกช่องที่อยู่ด้านบน → พิมพ์ <span class="mono">powershell</span> แล้ว Enter (PowerShell จะเปิดตรงโฟลเดอร์นี้พอดี) หรือใช้คำสั่ง:</p>
         <div class="cmd"><div class="cmd-row"><code><span class="p">&gt; </span>cd C:\kanchuda-order</code><button class="copy" data-cmd="cd C:\kanchuda-order">คัดลอก</button></div></div>
+        <div class="mini"><span>💡</span><span><b>cd</b> = คำสั่ง “ย้ายเข้าไปในโฟลเดอร์” · Claude Code ต้องเปิด <b>ในโฟลเดอร์โปรเจกต์</b> ถึงจะเห็นไฟล์ระบบทั้งหมด</span></div>
       </div></div>
     </div>
 
@@ -673,6 +716,55 @@
         <p><code>LINE_TOKEN</code> และ <code>WEBHOOK_TOKEN</code> คือกุญแจบอท — อย่าส่งในแชทสาธารณะ หรือ push ขึ้น GitHub แบบเปิด</p>
       </div></div>
     </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="stage" id="faq">
+    <div class="stage-head rev">
+      <div class="stage-num" style="background:var(--gold);box-shadow:0 10px 22px -12px var(--gold);font-size:22px">❓</div>
+      <div class="t">
+        <span class="eyebrow">คำถามที่พบบ่อย</span>
+        <h2>FAQ &amp; แก้ปัญหา</h2>
+        <p class="sub">คำถามที่มักเจอตอนรับมอบระบบ — คลิกที่คำถามเพื่อดูคำตอบ</p>
+      </div>
+    </div>
+
+    <div class="rev">
+      <details class="faq"><summary>ต้องเขียนโปรแกรมเป็นไหม?</summary><div class="fa">ไม่ต้องค่ะ — พิมพ์สั่ง Claude เป็นภาษาไทยได้เลย เช่น “ช่วยแก้ข้อความแจ้งตัดรอบ” Claude จะจัดการโค้ดให้เอง เราแค่ตรวจและกดยืนยัน</div></details>
+      <details class="faq"><summary>ถ้าสั่งผิด ระบบจะพังทันทีไหม?</summary><div class="fa">ไม่ทันทีค่ะ — Claude แก้ไฟล์ที่อยู่ <b>ในคอมเราก่อน</b> ต้องสั่ง <b>“อัปขึ้นระบบ”</b> (<code>clasp push</code>) ถึงจะมีผลจริง · และถ้าใช้ GitHub มีสำรองย้อนเวอร์ชันเก่าได้เสมอ — ช่วง 1–2 ครั้งแรกให้ Moodata คอยดูด้วยจะอุ่นใจ</div></details>
+      <details class="faq"><summary>Claude Code ต่างจาก claude.ai (เว็บแชท) ยังไง?</summary><div class="fa"><b>claude.ai</b> = คุยแชทอย่างเดียว (ช่วยคิด/ร่าง) · <b>Claude Code</b> = ทำงานบนคอมได้จริง — อ่านไฟล์โค้ด แก้ไฟล์ และรันคำสั่งอัปขึ้นระบบให้ · งานดูแลบอทใช้ Claude Code</div></details>
+      <details class="faq"><summary>ต้องเปิดคอมทิ้งไว้ตลอดให้บอททำงานไหม?</summary><div class="fa">ไม่ต้องค่ะ — บอทรันอยู่บน Google ตลอด 24 ชม. เอง · เปิดคอม + Claude Code เฉพาะตอนที่ <b>อยากแก้/อัปเดตระบบ</b> เท่านั้น</div></details>
+      <details class="faq"><summary>แก้เสร็จแล้วบอทเงียบ ไม่ตอบในกลุ่ม ทำยังไง?</summary><div class="fa">มัก 2 สาเหตุ: (1) แก้ระบบไลน์แล้วยังไม่ได้ <b>redeploy</b> · (2) สร้าง deployment ใหม่จน URL เปลี่ยน → บอก Claude ว่า “ช่วย redeploy โดยใช้ deployment เดิม” · ถ้ายังไม่หาย เช็ค <code>?token=</code> ใน webhook หรือติดต่อ Moodata</div></details>
+      <details class="faq"><summary>มีค่าใช้จ่ายอะไรบ้าง?</summary><div class="fa">หลัก ๆ คือ <b>Claude Pro $20/เดือน</b> · ส่วน Google Apps Script + LINE Messaging API ใช้ฟรีในโควต้าปกติของร้าน</div></details>
+      <details class="faq"><summary>ถ้าไม่อยากดูแลเองแล้ว ให้ Moodata ทำแทนได้ไหม?</summary><div class="fa">ได้ค่ะ — เลือก <b>“แบบ B” (Moodata ดูแลให้ ฿2,500/เดือน)</b> ที่หัวข้อ “2 ทางเลือกในการดูแลต่อ” ด้านบน · เปลี่ยนใจไปมาได้ตลอด</div></details>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="stage" id="gloss">
+    <div class="stage-head rev">
+      <div class="stage-num" style="background:var(--gold);box-shadow:0 10px 22px -12px var(--gold);font-size:22px">📖</div>
+      <div class="t">
+        <span class="eyebrow">คำศัพท์เทคนิคที่ควรรู้</span>
+        <h2>ศัพท์ที่เจอในคู่มือ อธิบายง่าย ๆ</h2>
+        <p class="sub">ไม่ต้องจำหมด — เปิดดูตอนเจอคำที่ไม่คุ้นก็พอ</p>
+      </div>
+    </div>
+
+    <dl class="gloss rev">
+      <div class="gterm"><dt>PowerShell</dt><dd>หน้าต่างพิมพ์คำสั่งของ Windows (เรียกว่า “เทอร์มินอล”) ที่เราพิมพ์สั่งให้คอมทำงาน</dd></div>
+      <div class="gterm"><dt>Node.js</dt><dd>โปรแกรมพื้นฐานที่ทำให้ติดตั้งเครื่องมือตัวอื่น (Claude Code, clasp) ได้</dd></div>
+      <div class="gterm"><dt>npm</dt><dd>ตัวติดตั้งโปรแกรม มากับ Node.js — ใช้พิมพ์ <code>npm install</code> เพื่อลงเครื่องมือ</dd></div>
+      <div class="gterm"><dt>Claude Code</dt><dd>Claude เวอร์ชันที่ทำงานบนคอม อ่าน/แก้ไฟล์โค้ด และรันคำสั่งให้ได้</dd></div>
+      <div class="gterm"><dt>clasp</dt><dd>เครื่องมือของ Google ที่ส่งโค้ดจากคอมขึ้นไปที่ Apps Script (สะพานเชื่อมคอม↔ระบบจริง)</dd></div>
+      <div class="gterm"><dt>Apps Script</dt><dd>ที่ที่โค้ดบอทกานต์ชุดารันอยู่ (บริการของ Google ผูกกับ Google Sheet)</dd></div>
+      <div class="gterm"><dt>deploy / deployment</dt><dd>การ “เผยแพร่” โค้ดเวอร์ชันใหม่ให้ใช้งานจริง · <b>redeploy</b> = อัปเดตโดยคง URL เดิม (สำคัญกับบอท)</dd></div>
+      <div class="gterm"><dt>webhook</dt><dd>ช่องทางที่ LINE ส่งข้อความในกลุ่มมาให้บอท — ต้องมี <code>?token=</code> ต่อท้าย URL เสมอ</dd></div>
+      <div class="gterm"><dt>scriptId</dt><dd>รหัสประจำโปรเจกต์ Apps Script — clasp ใช้รหัสนี้รู้ว่าจะส่งโค้ดไปที่ไหน</dd></div>
+      <div class="gterm"><dt>Token</dt><dd>รหัสลับ (กุญแจ) ของบอท เช่น <code>LINE_TOKEN</code> · เก็บเป็นความลับ ห้ามเผยแพร่</dd></div>
+      <div class="gterm"><dt>repo / GitHub</dt><dd>ที่เก็บโค้ดออนไลน์ ไว้สำรองและดูประวัติการแก้ — สั่ง Claude “commit + push” เพื่อบันทึก</dd></div>
+      <div class="gterm"><dt>clasp push</dt><dd>คำสั่ง “อัปโค้ดขึ้นระบบ” — สั่ง Claude เป็นภาษาไทยว่า “อัปขึ้นระบบให้หน่อย” ก็ได้</dd></div>
+    </dl>
   </section>
 
 </main>
