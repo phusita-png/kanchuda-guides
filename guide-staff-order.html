@@ -152,7 +152,7 @@
       <li><span class="tag">บรรทัดโทร</span><span class="desc">ขึ้นต้นด้วยคำว่า <b>โทร</b><small>เช่น โทร 0812345678 — บรรทัดนี้คือตัวแบ่งที่อยู่กับสินค้า</small></span></li>
       <li><span class="tag">บรรทัดสินค้า</span><span class="desc"><b>รหัสสินค้า (SKU) + จำนวน</b><small>เช่น SET-8 2 ชุด — ใส่จำนวนต่อท้าย (ไม่ใส่ = 1 ชุด) · มีหลายตัวก็ทำซ้ำทีละคู่ SKU+ราคา</small></span></li>
       <li><span class="tag">บรรทัดราคา</span><span class="desc"><b>ราคาต่อชุด (เลขล้วน)</b><small>เช่น 799 — อยู่บรรทัดถัดจาก SKU · เป็นราคา "ต่อ 1 ชุด" · ยังไม่รู้ราคาเว้นว่างได้ แอดมินเติมทีหลัง</small></span></li>
-      <li><span class="tag">บรรทัดยอดรวม</span><span class="desc"><b>เก็บเงินรวม __ ปลายทาง</b> (COD)<br>หรือ <b>เก็บเงินรวม __ โอน</b> (ลูกค้าโอน)<small>ยอดที่ลูกค้าจ่ายจริง — ต้องมีคำว่า <b>รวม</b> + ใส่ "ปลายทาง"/"โอน" ในบรรทัดนี้บรรทัดเดียว (โอน = แนบสลิปได้ ดูข้อ 5)</small></span></li>
+      <li><span class="tag">บรรทัดยอดรวม</span><span class="desc"><b>เก็บเงินรวม __ ปลายทาง</b> (COD)<br>หรือ <b>เก็บเงินรวม __ โอน</b> (ลูกค้าโอน)<small>ยอดที่ลูกค้าจ่ายจริง — ต้องมีคำว่า <b>รวม</b> + ใส่ "ปลายทาง"/"โอน" ในบรรทัดนี้บรรทัดเดียว (โอน = แนบสลิปได้ ดูข้อ 7)</small></span></li>
       <li><span class="tag">บรรทัด FB <span class="opt">ไม่บังคับ</span></span><span class="desc">ขึ้นต้นด้วย <b>FB:</b><small>เช่น FB: คุณสมหญิง — ใส่เฉพาะออเดอร์ที่มาจาก Facebook</small></span></li>
     </ul>
 
@@ -240,9 +240,9 @@ SET-Q5+R
 SET-K04
 799
 เก็บเงินรวม 799 โอน</div>
-      <div class="reply">✅ <span>บันทึกออเดอร์ #8 — การ์ดจะมีปุ่ม 📎 แนบสลิป (ดูข้อ 6)</span></div>
+      <div class="reply">✅ <span>บันทึกออเดอร์ #8 — การ์ดจะมีปุ่ม 📎 แนบสลิป (ดูข้อ 7)</span></div>
     </div>
-    <div class="note tip"><span class="ic">💳</span><div>บรรทัดเก็บเงินรวมใส่คำว่า <b>โอน</b> (เช่น <b>เก็บเงินรวม 799 โอน</b>) ระบบจะให้ <b>แนบสลิป</b> ตามข้อ 6 นะคะ</div></div>
+    <div class="note tip"><span class="ic">💳</span><div>บรรทัดเก็บเงินรวมใส่คำว่า <b>โอน</b> (เช่น <b>เก็บเงินรวม 799 โอน</b>) ระบบจะให้ <b>แนบสลิป</b> ตามข้อ 7 นะคะ</div></div>
   </div>
 
   <!-- กลุ่มเพจ FB -->
@@ -278,9 +278,48 @@ Set-Q2-C3
     <div class="note warn"><span class="ic">🤖</span><div><b>คนที่ดูแลเฉพาะเพจ AI</b> (จ๋า · มาย) ต้องขึ้นต้น <code class="k">AI</code> เสมอ เช่น <code class="k">AI210</code> — ถ้าพิมพ์ <code class="k">A2xx</code> ระบบจะเตือนว่าตกตัว I</div></div>
   </div>
 
+  <!-- กลุ่มส่งเคลม + กลุ่มส่งยอดบริษัท -->
+  <div class="card">
+    <div class="sec-title"><span class="n">5</span> กลุ่มส่งเคลม 🛠️ และกลุ่มส่งยอดบริษัท 🏢</div>
+    <div class="sec-sub">ใช้ชื่อที่ลงทะเบียนไว้แล้ว + รหัสประจำตัวเดิม ไม่ต้องลงทะเบียนใหม่ — พิมพ์ออเดอร์รูปแบบเดิมทุกอย่าง ต่างกันตามด้านล่างนี้</div>
+
+    <ul class="lines">
+      <li><span class="tag">กลุ่มส่งเคลม</span><span class="desc">บรรทัดแรกขึ้นต้น <b>C</b> ตามด้วยรหัสของคุณ เช่น <code class="k">C13</code><small>ส่งของให้ลูกค้าฟรี — <b>ไม่ต้องพิมพ์ราคา และไม่ต้องมีบรรทัดเก็บเงินรวม</b> · ระบบตั้งราคา 0 + ไม่เก็บเงินปลายทางให้เอง (พิมพ์มาก็ไม่นับ)</small></span></li>
+      <li><span class="tag">กลุ่มส่งยอดบริษัท</span><span class="desc">บรรทัดแรกขึ้นต้น <b>CA</b> ตามด้วยรหัสของคุณ เช่น <code class="k">CA13</code><small>ที่เหลือเหมือนออเดอร์ปกติทุกอย่าง — ราคาต่อชุด + เก็บเงินรวม __ ปลายทาง / โอน</small></span></li>
+    </ul>
+
+    <p style="font-size:14.3px; margin-top:14px"><b>กลุ่มส่งเคลม: ต้องมีบรรทัด "เคลม + เลขสาเหตุ" 1 บรรทัด</b> (ใส่ตรงไหนของข้อความก็ได้)</p>
+    <ul class="lines">
+      <li><span class="tag">เคลม 1</span><span class="desc">แพ็คไม่ครบ</span></li>
+      <li><span class="tag">เคลม 2</span><span class="desc">AI เรียงไฟล์ ตกหล่น</span></li>
+      <li><span class="tag">เคลม 3</span><span class="desc">แอดมินใส่ SKU ไม่ครบ/ผิด</span></li>
+      <li><span class="tag">เคลม 4</span><span class="desc">แพ้สินค้า</span></li>
+      <li><span class="tag">เคลม 5</span><span class="desc">สินค้าเสียหายระหว่างการจัดส่ง</span></li>
+      <li><span class="tag">เคลม 6</span><span class="desc">เสียหายจากโรงงานผลิต</span></li>
+    </ul>
+
+    <div class="chat">
+      <div class="who me">คุณ</div>
+      <div class="bubble me">C13
+1
+สมใจ ใจดี
+12/3 หมู่ 4 ต.บางพูด
+อ.ปากเกร็ด จ.นนทบุรี
+11120
+โทร 0812345678
+SET-8
+เคลม 6</div>
+      <div class="reply">✅ <span>บันทึกออเดอร์ — การ์ดบอก 🎁 ส่งเคลม (ไม่เก็บเงิน) + 🛠️ สาเหตุ: 6. เสียหายจากโรงงานผลิต</span></div>
+    </div>
+
+    <div class="note tip"><span class="ic">✍️</span><div><b>พิมพ์เป็นคำแทนเลขก็ได้</b> เช่น <code class="k">เคลม แพ้สินค้า</code> หรือ <code class="k">เคลม เสียหายจากโรงงานผลิต</code> — แต่<b>พิมพ์เลขชัวร์ที่สุด</b> · คำว่า "เคลม" ต้องอยู่<b>ต้นบรรทัด</b>เท่านั้น</div></div>
+    <div class="note tip"><span class="ic">👀</span><div><b>ดูบรรทัด 🛠️ สาเหตุ ในการ์ดทุกครั้ง</b> ว่าตรงกับที่ตั้งใจไหม — ถ้าผิด กด ❌ ยกเลิก แล้วส่งใหม่</div></div>
+    <div class="note warn"><span class="ic">⚠️</span><div><b>ลืมใส่บรรทัดเคลม / ระบบอ่านไม่ออก</b> → ออเดอร์ยังเข้าระบบ แต่การ์ดขึ้น ⚠️ "ยังไม่ระบุสาเหตุเคลม" พร้อมรายการ 6 ข้อ — กด ❌ ยกเลิก แล้วส่งใหม่โดยเพิ่มบรรทัด <code class="k">เคลม 1–6</code></div></div>
+  </div>
+
   <!-- บอทตอบกลับ -->
   <div class="card">
-    <div class="sec-title"><span class="n">5</span> ระบบตอบกลับว่าอะไร</div>
+    <div class="sec-title"><span class="n">6</span> ระบบตอบกลับว่าอะไร</div>
     <div class="sec-sub">หลังส่งออเดอร์ บอทจะตอบกลับเป็น <b>การ์ดสรุป + ปุ่มยกเลิก</b></div>
 
     <div class="chat">
@@ -300,7 +339,7 @@ Set-Q2-C3
 
   <!-- โอนเงิน + แนบสลิป -->
   <div class="card">
-    <div class="sec-title"><span class="n">6</span> ออเดอร์โอนเงิน — แนบสลิป 💳</div>
+    <div class="sec-title"><span class="n">7</span> ออเดอร์โอนเงิน — แนบสลิป 💳</div>
     <div class="sec-sub">ออเดอร์ที่ลูกค้าโอน ให้แนบรูปสลิปเข้าระบบ เก็บไว้คู่กับออเดอร์</div>
 
     <p style="font-size:14.3px">พอส่งออเดอร์ที่บรรทัดเก็บเงินรวมมีคำว่า <b>โอน</b> การ์ดตอบกลับจะมี <b>ปุ่ม 📎 แนบสลิป</b> เพิ่มมา:</p>
@@ -329,7 +368,7 @@ Set-Q2-C3
 
   <!-- ยกเลิกออเดอร์ -->
   <div class="card">
-    <div class="sec-title"><span class="n">7</span> ยกเลิกออเดอร์ (ส่งผิด)</div>
+    <div class="sec-title"><span class="n">8</span> ยกเลิกออเดอร์ (ส่งผิด)</div>
     <div class="sec-sub">ส่งผิดไม่ต้องตกใจ — กดยกเลิกเองได้เลย</div>
 
     <p style="font-size:14.3px">ใต้การ์ดทุกใบมีปุ่ม <b>❌ ยกเลิกออเดอร์นี้</b> — <b>กดปุ่มนั้นได้เลย</b> บอทจะยืนยัน:</p>
@@ -345,7 +384,7 @@ Set-Q2-C3
 
   <!-- ควร / ไม่ควร -->
   <div class="card">
-    <div class="sec-title"><span class="n">8</span> ควร / ไม่ควร</div>
+    <div class="sec-title"><span class="n">9</span> ควร / ไม่ควร</div>
     <div class="dos">
       <div class="do">
         <h4>✓ ควรทำ</h4>
